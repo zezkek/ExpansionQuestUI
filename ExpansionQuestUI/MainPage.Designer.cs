@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             idLabel = new Label();
-            idTextBox = new MaskedTextBox();
             titleLabel = new Label();
             questTitleTextBox = new TextBox();
             descLabel1 = new Label();
@@ -40,9 +39,9 @@
             descLabel3 = new Label();
             objTextBox = new TextBox();
             objLabel = new Label();
-            Repeatable = new CheckBox();
+            repeatable = new CheckBox();
             isDaily = new CheckBox();
-            IsWeekly = new CheckBox();
+            isWeekly = new CheckBox();
             cancelOnDeath = new CheckBox();
             autocomplete = new CheckBox();
             isGroup = new CheckBox();
@@ -58,16 +57,32 @@
             removeReward = new Button();
             addReward = new Button();
             rewardsLabel = new Label();
-            SelectReward = new CheckBox();
+            selectReward = new CheckBox();
             randomReward = new CheckBox();
             rewardForOwner = new CheckBox();
-            maskedTextBox1 = new MaskedTextBox();
+            rewardBehTexbox = new MaskedTextBox();
             rewardBeh = new Label();
             giverNPCTextBox = new MaskedTextBox();
             giverNPCLabel = new Label();
             turninNPCIDTexBox = new MaskedTextBox();
             tunrinNPCIDLabel = new Label();
             achievment = new CheckBox();
+            addObjective = new Button();
+            removeObjective = new Button();
+            objectiveLabel = new Label();
+            objectivesListBox = new ListBox();
+            colorIdTextBox = new MaskedTextBox();
+            colorLabel = new Label();
+            repQuestTextBox = new MaskedTextBox();
+            repLabel = new Label();
+            repNeedQuestTextBox = new MaskedTextBox();
+            repNeedLabel = new Label();
+            prevQuestTextBox = new MaskedTextBox();
+            prevQuestLabe = new Label();
+            needQuestItems = new CheckBox();
+            deleteQuestItems = new CheckBox();
+            seqQuest = new CheckBox();
+            idTextBox = new TextBox();
             SuspendLayout();
             // 
             // idLabel
@@ -78,13 +93,6 @@
             idLabel.Size = new Size(57, 15);
             idLabel.TabIndex = 1;
             idLabel.Text = "ID Квеста";
-            // 
-            // idTextBox
-            // 
-            idTextBox.Location = new Point(126, 28);
-            idTextBox.Name = "idTextBox";
-            idTextBox.Size = new Size(54, 23);
-            idTextBox.TabIndex = 2;
             // 
             // titleLabel
             // 
@@ -169,40 +177,40 @@
             objLabel.TabIndex = 12;
             objLabel.Text = "Текст цели квеста";
             // 
-            // Repeatable
+            // repeatable
             // 
-            Repeatable.AutoSize = true;
-            Repeatable.Location = new Point(12, 461);
-            Repeatable.Name = "Repeatable";
-            Repeatable.Size = new Size(104, 19);
-            Repeatable.TabIndex = 14;
-            Repeatable.Text = "Повторяемый";
-            Repeatable.UseVisualStyleBackColor = true;
+            repeatable.AutoSize = true;
+            repeatable.Location = new Point(14, 427);
+            repeatable.Name = "repeatable";
+            repeatable.Size = new Size(104, 19);
+            repeatable.TabIndex = 14;
+            repeatable.Text = "Повторяемый";
+            repeatable.UseVisualStyleBackColor = true;
             // 
             // isDaily
             // 
             isDaily.AutoSize = true;
-            isDaily.Location = new Point(122, 461);
+            isDaily.Location = new Point(124, 427);
             isDaily.Name = "isDaily";
             isDaily.Size = new Size(95, 19);
             isDaily.TabIndex = 15;
             isDaily.Text = "Ежедневный";
             isDaily.UseVisualStyleBackColor = true;
             // 
-            // IsWeekly
+            // isWeekly
             // 
-            IsWeekly.AutoSize = true;
-            IsWeekly.Location = new Point(223, 461);
-            IsWeekly.Name = "IsWeekly";
-            IsWeekly.Size = new Size(108, 19);
-            IsWeekly.TabIndex = 16;
-            IsWeekly.Text = "Еженедельный";
-            IsWeekly.UseVisualStyleBackColor = true;
+            isWeekly.AutoSize = true;
+            isWeekly.Location = new Point(225, 427);
+            isWeekly.Name = "isWeekly";
+            isWeekly.Size = new Size(108, 19);
+            isWeekly.TabIndex = 16;
+            isWeekly.Text = "Еженедельный";
+            isWeekly.UseVisualStyleBackColor = true;
             // 
             // cancelOnDeath
             // 
             cancelOnDeath.AutoSize = true;
-            cancelOnDeath.Location = new Point(12, 486);
+            cancelOnDeath.Location = new Point(14, 452);
             cancelOnDeath.Name = "cancelOnDeath";
             cancelOnDeath.Size = new Size(179, 19);
             cancelOnDeath.TabIndex = 19;
@@ -212,7 +220,7 @@
             // autocomplete
             // 
             autocomplete.AutoSize = true;
-            autocomplete.Location = new Point(197, 486);
+            autocomplete.Location = new Point(199, 452);
             autocomplete.Name = "autocomplete";
             autocomplete.Size = new Size(121, 19);
             autocomplete.TabIndex = 18;
@@ -222,7 +230,7 @@
             // isGroup
             // 
             isGroup.AutoSize = true;
-            isGroup.Location = new Point(324, 486);
+            isGroup.Location = new Point(326, 452);
             isGroup.Name = "isGroup";
             isGroup.Size = new Size(118, 19);
             isGroup.TabIndex = 17;
@@ -231,15 +239,16 @@
             // 
             // followUpQuestIdTextBox
             // 
-            followUpQuestIdTextBox.Location = new Point(149, 426);
+            followUpQuestIdTextBox.Location = new Point(279, 560);
             followUpQuestIdTextBox.Name = "followUpQuestIdTextBox";
             followUpQuestIdTextBox.Size = new Size(54, 23);
             followUpQuestIdTextBox.TabIndex = 21;
+            followUpQuestIdTextBox.KeyPress += followUpQuestIdTextBox_KeyPress;
             // 
             // followUpQuestLabel
             // 
             followUpQuestLabel.AutoSize = true;
-            followUpQuestLabel.Location = new Point(12, 429);
+            followUpQuestLabel.Location = new Point(12, 563);
             followUpQuestLabel.Name = "followUpQuestLabel";
             followUpQuestLabel.Size = new Size(131, 15);
             followUpQuestLabel.TabIndex = 20;
@@ -333,20 +342,20 @@
             rewardsLabel.TabIndex = 28;
             rewardsLabel.Text = "Награды";
             // 
-            // SelectReward
+            // selectReward
             // 
-            SelectReward.AutoSize = true;
-            SelectReward.Location = new Point(12, 511);
-            SelectReward.Name = "SelectReward";
-            SelectReward.Size = new Size(192, 19);
-            SelectReward.TabIndex = 32;
-            SelectReward.Text = "Необходимо выбрать награду";
-            SelectReward.UseVisualStyleBackColor = true;
+            selectReward.AutoSize = true;
+            selectReward.Location = new Point(14, 477);
+            selectReward.Name = "selectReward";
+            selectReward.Size = new Size(192, 19);
+            selectReward.TabIndex = 32;
+            selectReward.Text = "Необходимо выбрать награду";
+            selectReward.UseVisualStyleBackColor = true;
             // 
             // randomReward
             // 
             randomReward.AutoSize = true;
-            randomReward.Location = new Point(210, 511);
+            randomReward.Location = new Point(212, 477);
             randomReward.Name = "randomReward";
             randomReward.Size = new Size(132, 19);
             randomReward.TabIndex = 33;
@@ -356,24 +365,25 @@
             // rewardForOwner
             // 
             rewardForOwner.AutoSize = true;
-            rewardForOwner.Location = new Point(12, 536);
+            rewardForOwner.Location = new Point(14, 502);
             rewardForOwner.Name = "rewardForOwner";
             rewardForOwner.Size = new Size(220, 19);
             rewardForOwner.TabIndex = 34;
             rewardForOwner.Text = "Награда только для лидера группы";
             rewardForOwner.UseVisualStyleBackColor = true;
             // 
-            // maskedTextBox1
+            // rewardBehTexbox
             // 
-            maskedTextBox1.Location = new Point(255, 569);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(54, 23);
-            maskedTextBox1.TabIndex = 36;
+            rewardBehTexbox.Location = new Point(279, 589);
+            rewardBehTexbox.Name = "rewardBehTexbox";
+            rewardBehTexbox.Size = new Size(54, 23);
+            rewardBehTexbox.TabIndex = 36;
+            rewardBehTexbox.KeyPress += rewardBehTexbox_KeyPress;
             // 
             // rewardBeh
             // 
             rewardBeh.AutoSize = true;
-            rewardBeh.Location = new Point(12, 572);
+            rewardBeh.Location = new Point(12, 592);
             rewardBeh.Name = "rewardBeh";
             rewardBeh.Size = new Size(237, 15);
             rewardBeh.TabIndex = 35;
@@ -381,61 +391,221 @@
             // 
             // giverNPCTextBox
             // 
-            giverNPCTextBox.Location = new Point(660, 428);
+            giverNPCTextBox.Location = new Point(279, 618);
             giverNPCTextBox.Name = "giverNPCTextBox";
             giverNPCTextBox.Size = new Size(54, 23);
             giverNPCTextBox.TabIndex = 38;
+            giverNPCTextBox.KeyPress += giverNPCTextBox_KeyPress;
             // 
             // giverNPCLabel
             // 
             giverNPCLabel.AutoSize = true;
-            giverNPCLabel.Location = new Point(483, 431);
+            giverNPCLabel.Location = new Point(12, 621);
             giverNPCLabel.Name = "giverNPCLabel";
-            giverNPCLabel.Size = new Size(147, 15);
+            giverNPCLabel.Size = new Size(234, 15);
             giverNPCLabel.TabIndex = 37;
-            giverNPCLabel.Text = "ID NPC Выдающего квест";
+            giverNPCLabel.Text = "ID NPC Выдающего квест(через запятую)";
             // 
             // turninNPCIDTexBox
             // 
-            turninNPCIDTexBox.Location = new Point(660, 457);
+            turninNPCIDTexBox.Location = new Point(279, 647);
             turninNPCIDTexBox.Name = "turninNPCIDTexBox";
             turninNPCIDTexBox.Size = new Size(54, 23);
             turninNPCIDTexBox.TabIndex = 40;
+            turninNPCIDTexBox.KeyPress += turninNPCIDTexBox_KeyPress;
             // 
             // tunrinNPCIDLabel
             // 
             tunrinNPCIDLabel.AutoSize = true;
-            tunrinNPCIDLabel.Location = new Point(483, 460);
+            tunrinNPCIDLabel.Location = new Point(12, 650);
             tunrinNPCIDLabel.Name = "tunrinNPCIDLabel";
-            tunrinNPCIDLabel.Size = new Size(171, 15);
+            tunrinNPCIDLabel.Size = new Size(258, 15);
             tunrinNPCIDLabel.TabIndex = 39;
-            tunrinNPCIDLabel.Text = "ID NPC Принимающего квест";
+            tunrinNPCIDLabel.Text = "ID NPC Принимающего квест(через запятую)";
             // 
             // achievment
             // 
             achievment.AutoSize = true;
-            achievment.Location = new Point(238, 536);
+            achievment.Location = new Point(240, 502);
             achievment.Name = "achievment";
             achievment.Size = new Size(66, 19);
             achievment.TabIndex = 41;
             achievment.Text = "Ачивка";
             achievment.UseVisualStyleBackColor = true;
             // 
+            // addObjective
+            // 
+            addObjective.Location = new Point(612, 433);
+            addObjective.Name = "addObjective";
+            addObjective.Size = new Size(75, 23);
+            addObjective.TabIndex = 42;
+            addObjective.Text = "Добавить";
+            addObjective.UseVisualStyleBackColor = true;
+            // 
+            // removeObjective
+            // 
+            removeObjective.Location = new Point(693, 433);
+            removeObjective.Name = "removeObjective";
+            removeObjective.Size = new Size(75, 23);
+            removeObjective.TabIndex = 43;
+            removeObjective.Text = "Удалить";
+            removeObjective.UseVisualStyleBackColor = true;
+            // 
+            // objectiveLabel
+            // 
+            objectiveLabel.AutoSize = true;
+            objectiveLabel.Location = new Point(482, 437);
+            objectiveLabel.Name = "objectiveLabel";
+            objectiveLabel.Size = new Size(84, 15);
+            objectiveLabel.TabIndex = 44;
+            objectiveLabel.Text = "Задачи квеста";
+            // 
+            // objectivesListBox
+            // 
+            objectivesListBox.FormattingEnabled = true;
+            objectivesListBox.ItemHeight = 15;
+            objectivesListBox.Location = new Point(482, 462);
+            objectivesListBox.Name = "objectivesListBox";
+            objectivesListBox.Size = new Size(444, 154);
+            objectivesListBox.TabIndex = 45;
+            // 
+            // colorIdTextBox
+            // 
+            colorIdTextBox.Location = new Point(279, 676);
+            colorIdTextBox.Name = "colorIdTextBox";
+            colorIdTextBox.Size = new Size(54, 23);
+            colorIdTextBox.TabIndex = 47;
+            colorIdTextBox.KeyPress += colorIdTextBox_KeyPress;
+            // 
+            // colorLabel
+            // 
+            colorLabel.AutoSize = true;
+            colorLabel.Location = new Point(12, 679);
+            colorLabel.Name = "colorLabel";
+            colorLabel.Size = new Size(51, 15);
+            colorLabel.TabIndex = 46;
+            colorLabel.Text = "ID цвета";
+            // 
+            // repQuestTextBox
+            // 
+            repQuestTextBox.Location = new Point(279, 705);
+            repQuestTextBox.Name = "repQuestTextBox";
+            repQuestTextBox.Size = new Size(54, 23);
+            repQuestTextBox.TabIndex = 49;
+            repQuestTextBox.KeyPress += repQuestTextBox_KeyPress;
+            // 
+            // repLabel
+            // 
+            repLabel.AutoSize = true;
+            repLabel.Location = new Point(12, 708);
+            repLabel.Name = "repLabel";
+            repLabel.Size = new Size(189, 15);
+            repLabel.TabIndex = 48;
+            repLabel.Text = "Кол-во очков репутации за квест";
+            // 
+            // repNeedQuestTextBox
+            // 
+            repNeedQuestTextBox.Location = new Point(279, 734);
+            repNeedQuestTextBox.Name = "repNeedQuestTextBox";
+            repNeedQuestTextBox.Size = new Size(54, 23);
+            repNeedQuestTextBox.TabIndex = 51;
+            repNeedQuestTextBox.KeyPress += repNeedQuestTextBox_KeyPress;
+            // 
+            // repNeedLabel
+            // 
+            repNeedLabel.AutoSize = true;
+            repNeedLabel.Location = new Point(12, 737);
+            repNeedLabel.Name = "repNeedLabel";
+            repNeedLabel.Size = new Size(203, 15);
+            repNeedLabel.TabIndex = 50;
+            repNeedLabel.Text = "Кол-во очков репутации для квеста";
+            // 
+            // prevQuestTextBox
+            // 
+            prevQuestTextBox.Location = new Point(279, 763);
+            prevQuestTextBox.Name = "prevQuestTextBox";
+            prevQuestTextBox.Size = new Size(54, 23);
+            prevQuestTextBox.TabIndex = 53;
+            prevQuestTextBox.KeyPress += prevQuestTextBox_KeyPress;
+            // 
+            // prevQuestLabe
+            // 
+            prevQuestLabe.AutoSize = true;
+            prevQuestLabe.Location = new Point(12, 766);
+            prevQuestLabe.Name = "prevQuestLabe";
+            prevQuestLabe.Size = new Size(214, 15);
+            prevQuestLabe.TabIndex = 52;
+            prevQuestLabe.Text = "Необходимые квесты(через запятую)";
+            // 
+            // needQuestItems
+            // 
+            needQuestItems.AutoSize = true;
+            needQuestItems.Location = new Point(14, 527);
+            needQuestItems.Name = "needQuestItems";
+            needQuestItems.Size = new Size(217, 19);
+            needQuestItems.TabIndex = 54;
+            needQuestItems.Text = "Необходимы квестовые предметы";
+            needQuestItems.UseVisualStyleBackColor = true;
+            // 
+            // deleteQuestItems
+            // 
+            deleteQuestItems.AutoSize = true;
+            deleteQuestItems.Location = new Point(237, 527);
+            deleteQuestItems.Name = "deleteQuestItems";
+            deleteQuestItems.Size = new Size(187, 19);
+            deleteQuestItems.TabIndex = 55;
+            deleteQuestItems.Text = "Удалять квестовые предметы";
+            deleteQuestItems.UseVisualStyleBackColor = true;
+            // 
+            // seqQuest
+            // 
+            seqQuest.AutoSize = true;
+            seqQuest.Location = new Point(312, 502);
+            seqQuest.Name = "seqQuest";
+            seqQuest.Size = new Size(131, 19);
+            seqQuest.TabIndex = 56;
+            seqQuest.Text = "Очередность задач";
+            seqQuest.UseVisualStyleBackColor = true;
+            // 
+            // idTextBox
+            // 
+            idTextBox.Location = new Point(126, 26);
+            idTextBox.Name = "idTextBox";
+            idTextBox.Size = new Size(53, 23);
+            idTextBox.TabIndex = 57;
+            idTextBox.KeyPress += idTextBox_KeyPress;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 866);
+            Controls.Add(idTextBox);
+            Controls.Add(seqQuest);
+            Controls.Add(deleteQuestItems);
+            Controls.Add(needQuestItems);
+            Controls.Add(prevQuestTextBox);
+            Controls.Add(prevQuestLabe);
+            Controls.Add(repNeedQuestTextBox);
+            Controls.Add(repNeedLabel);
+            Controls.Add(repQuestTextBox);
+            Controls.Add(repLabel);
+            Controls.Add(colorIdTextBox);
+            Controls.Add(colorLabel);
+            Controls.Add(objectivesListBox);
+            Controls.Add(objectiveLabel);
+            Controls.Add(removeObjective);
+            Controls.Add(addObjective);
             Controls.Add(achievment);
             Controls.Add(turninNPCIDTexBox);
             Controls.Add(tunrinNPCIDLabel);
             Controls.Add(giverNPCTextBox);
             Controls.Add(giverNPCLabel);
-            Controls.Add(maskedTextBox1);
+            Controls.Add(rewardBehTexbox);
             Controls.Add(rewardBeh);
             Controls.Add(rewardForOwner);
             Controls.Add(randomReward);
-            Controls.Add(SelectReward);
+            Controls.Add(selectReward);
             Controls.Add(rewardsListbox);
             Controls.Add(removeReward);
             Controls.Add(addReward);
@@ -451,9 +621,9 @@
             Controls.Add(cancelOnDeath);
             Controls.Add(autocomplete);
             Controls.Add(isGroup);
-            Controls.Add(IsWeekly);
+            Controls.Add(isWeekly);
             Controls.Add(isDaily);
-            Controls.Add(Repeatable);
+            Controls.Add(repeatable);
             Controls.Add(objTextBox);
             Controls.Add(objLabel);
             Controls.Add(endDialogTextBox);
@@ -464,7 +634,6 @@
             Controls.Add(descLabel1);
             Controls.Add(questTitleTextBox);
             Controls.Add(titleLabel);
-            Controls.Add(idTextBox);
             Controls.Add(idLabel);
             Name = "MainPage";
             Text = "Редактор квестов by fkn_goose";
@@ -474,7 +643,6 @@
 
         #endregion
         private Label idLabel;
-        private MaskedTextBox idTextBox;
         private Label titleLabel;
         private TextBox questTitleTextBox;
         private Label descLabel1;
@@ -485,9 +653,9 @@
         private Label descLabel3;
         private TextBox objTextBox;
         private Label objLabel;
-        private CheckBox Repeatable;
+        private CheckBox repeatable;
         private CheckBox isDaily;
-        private CheckBox IsWeekly;
+        private CheckBox isWeekly;
         private CheckBox cancelOnDeath;
         private CheckBox autocomplete;
         private CheckBox isGroup;
@@ -503,15 +671,31 @@
         private Button removeReward;
         private Button addReward;
         private Label rewardsLabel;
-        private CheckBox SelectReward;
+        private CheckBox selectReward;
         private CheckBox randomReward;
         private CheckBox rewardForOwner;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox rewardBehTexbox;
         private Label rewardBeh;
         private MaskedTextBox giverNPCTextBox;
         private Label giverNPCLabel;
         private MaskedTextBox turninNPCIDTexBox;
         private Label tunrinNPCIDLabel;
         private CheckBox achievment;
+        private Button addObjective;
+        private Button removeObjective;
+        private Label objectiveLabel;
+        private ListBox objectivesListBox;
+        private MaskedTextBox colorIdTextBox;
+        private Label colorLabel;
+        private MaskedTextBox repQuestTextBox;
+        private Label repLabel;
+        private MaskedTextBox repNeedQuestTextBox;
+        private Label repNeedLabel;
+        private MaskedTextBox prevQuestTextBox;
+        private Label prevQuestLabe;
+        private CheckBox needQuestItems;
+        private CheckBox deleteQuestItems;
+        private CheckBox seqQuest;
+        private TextBox idTextBox;
     }
 }
