@@ -52,8 +52,6 @@
             questItemsLabel = new Label();
             addQuestItem = new Button();
             deleteQuestItem = new Button();
-            questItemsListBox = new ListBox();
-            rewardsListbox = new ListBox();
             removeReward = new Button();
             addReward = new Button();
             rewardsLabel = new Label();
@@ -70,7 +68,6 @@
             addObjective = new Button();
             removeObjective = new Button();
             objectiveLabel = new Label();
-            objectivesListBox = new ListBox();
             colorIdTextBox = new MaskedTextBox();
             colorLabel = new Label();
             repQuestTextBox = new MaskedTextBox();
@@ -83,6 +80,34 @@
             deleteQuestItems = new CheckBox();
             seqQuest = new CheckBox();
             idTextBox = new TextBox();
+            menuStrip1 = new MenuStrip();
+            fileTooltipMenu = new ToolStripMenuItem();
+            createFile = new ToolStripMenuItem();
+            openFile = new ToolStripMenuItem();
+            saveFile = new ToolStripMenuItem();
+            validation = new ToolStripMenuItem();
+            createDir = new ToolStripMenuItem();
+            valDir = new ToolStripMenuItem();
+            questItemsData = new DataGridView();
+            ClassName = new DataGridViewTextBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            rewardsData = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            Attachments = new DataGridViewTextBoxColumn();
+            DamagePercent = new DataGridViewTextBoxColumn();
+            QuestID = new DataGridViewTextBoxColumn();
+            Chance = new DataGridViewTextBoxColumn();
+            objectivesData = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            ObjectiveType = new DataGridViewTextBoxColumn();
+            openQuest = new OpenFileDialog();
+            randomRewardAmountTextBox = new MaskedTextBox();
+            randomRewardAmountLabel = new Label();
+            menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)questItemsData).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rewardsData).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)objectivesData).BeginInit();
             SuspendLayout();
             // 
             // idLabel
@@ -297,27 +322,9 @@
             deleteQuestItem.Text = "Удалить";
             deleteQuestItem.UseVisualStyleBackColor = true;
             // 
-            // questItemsListBox
-            // 
-            questItemsListBox.FormattingEnabled = true;
-            questItemsListBox.ItemHeight = 15;
-            questItemsListBox.Location = new Point(482, 104);
-            questItemsListBox.Name = "questItemsListBox";
-            questItemsListBox.Size = new Size(444, 124);
-            questItemsListBox.TabIndex = 27;
-            // 
-            // rewardsListbox
-            // 
-            rewardsListbox.FormattingEnabled = true;
-            rewardsListbox.ItemHeight = 15;
-            rewardsListbox.Location = new Point(482, 266);
-            rewardsListbox.Name = "rewardsListbox";
-            rewardsListbox.Size = new Size(444, 154);
-            rewardsListbox.TabIndex = 31;
-            // 
             // removeReward
             // 
-            removeReward.Location = new Point(693, 234);
+            removeReward.Location = new Point(693, 313);
             removeReward.Name = "removeReward";
             removeReward.Size = new Size(75, 23);
             removeReward.TabIndex = 30;
@@ -326,7 +333,7 @@
             // 
             // addReward
             // 
-            addReward.Location = new Point(612, 234);
+            addReward.Location = new Point(612, 313);
             addReward.Name = "addReward";
             addReward.Size = new Size(75, 23);
             addReward.TabIndex = 29;
@@ -336,7 +343,7 @@
             // rewardsLabel
             // 
             rewardsLabel.AutoSize = true;
-            rewardsLabel.Location = new Point(482, 238);
+            rewardsLabel.Location = new Point(482, 317);
             rewardsLabel.Name = "rewardsLabel";
             rewardsLabel.Size = new Size(55, 15);
             rewardsLabel.TabIndex = 28;
@@ -435,7 +442,7 @@
             // 
             // addObjective
             // 
-            addObjective.Location = new Point(612, 433);
+            addObjective.Location = new Point(612, 560);
             addObjective.Name = "addObjective";
             addObjective.Size = new Size(75, 23);
             addObjective.TabIndex = 42;
@@ -444,7 +451,7 @@
             // 
             // removeObjective
             // 
-            removeObjective.Location = new Point(693, 433);
+            removeObjective.Location = new Point(693, 560);
             removeObjective.Name = "removeObjective";
             removeObjective.Size = new Size(75, 23);
             removeObjective.TabIndex = 43;
@@ -454,20 +461,11 @@
             // objectiveLabel
             // 
             objectiveLabel.AutoSize = true;
-            objectiveLabel.Location = new Point(482, 437);
+            objectiveLabel.Location = new Point(482, 564);
             objectiveLabel.Name = "objectiveLabel";
             objectiveLabel.Size = new Size(84, 15);
             objectiveLabel.TabIndex = 44;
             objectiveLabel.Text = "Задачи квеста";
-            // 
-            // objectivesListBox
-            // 
-            objectivesListBox.FormattingEnabled = true;
-            objectivesListBox.ItemHeight = 15;
-            objectivesListBox.Location = new Point(482, 462);
-            objectivesListBox.Name = "objectivesListBox";
-            objectivesListBox.Size = new Size(444, 154);
-            objectivesListBox.TabIndex = 45;
             // 
             // colorIdTextBox
             // 
@@ -575,11 +573,194 @@
             idTextBox.TabIndex = 57;
             idTextBox.KeyPress += idTextBox_KeyPress;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileTooltipMenu, validation });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1110, 24);
+            menuStrip1.TabIndex = 58;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileTooltipMenu
+            // 
+            fileTooltipMenu.DropDownItems.AddRange(new ToolStripItem[] { createFile, openFile, saveFile });
+            fileTooltipMenu.Name = "fileTooltipMenu";
+            fileTooltipMenu.Size = new Size(48, 20);
+            fileTooltipMenu.Text = "Файл";
+            // 
+            // createFile
+            // 
+            createFile.Name = "createFile";
+            createFile.Size = new Size(180, 22);
+            createFile.Text = "Создать";
+            createFile.Click += createFile_Click;
+            // 
+            // openFile
+            // 
+            openFile.Name = "openFile";
+            openFile.Size = new Size(180, 22);
+            openFile.Text = "Открыть";
+            openFile.Click += openFile_Click;
+            // 
+            // saveFile
+            // 
+            saveFile.Name = "saveFile";
+            saveFile.Size = new Size(180, 22);
+            saveFile.Text = "Сохранить";
+            saveFile.Click += saveFile_Click;
+            // 
+            // validation
+            // 
+            validation.DropDownItems.AddRange(new ToolStripItem[] { createDir, valDir });
+            validation.Name = "validation";
+            validation.Size = new Size(146, 20);
+            validation.Text = "Валидация директории";
+            // 
+            // createDir
+            // 
+            createDir.Name = "createDir";
+            createDir.Size = new Size(192, 22);
+            createDir.Text = "Создать директорию";
+            // 
+            // valDir
+            // 
+            valDir.Name = "valDir";
+            valDir.Size = new Size(192, 22);
+            valDir.Text = "Провести валидацию";
+            // 
+            // questItemsData
+            // 
+            questItemsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            questItemsData.Columns.AddRange(new DataGridViewColumn[] { ClassName, Amount });
+            questItemsData.Location = new Point(483, 101);
+            questItemsData.Name = "questItemsData";
+            questItemsData.Size = new Size(604, 188);
+            questItemsData.TabIndex = 59;
+            // 
+            // ClassName
+            // 
+            ClassName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ClassName.HeaderText = "ClassName";
+            ClassName.MinimumWidth = 100;
+            ClassName.Name = "ClassName";
+            ClassName.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Amount.HeaderText = "Amount";
+            Amount.MinimumWidth = 100;
+            Amount.Name = "Amount";
+            Amount.ReadOnly = true;
+            // 
+            // rewardsData
+            // 
+            rewardsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            rewardsData.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, Attachments, DamagePercent, QuestID, Chance });
+            rewardsData.Location = new Point(482, 342);
+            rewardsData.Name = "rewardsData";
+            rewardsData.Size = new Size(605, 204);
+            rewardsData.TabIndex = 60;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn1.HeaderText = "ClassName";
+            dataGridViewTextBoxColumn1.MinimumWidth = 100;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewTextBoxColumn2.HeaderText = "Amount";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 76;
+            // 
+            // Attachments
+            // 
+            Attachments.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Attachments.HeaderText = "Attachments";
+            Attachments.Name = "Attachments";
+            Attachments.ReadOnly = true;
+            // 
+            // DamagePercent
+            // 
+            DamagePercent.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            DamagePercent.HeaderText = "DamagePercent";
+            DamagePercent.Name = "DamagePercent";
+            DamagePercent.ReadOnly = true;
+            DamagePercent.Width = 116;
+            // 
+            // QuestID
+            // 
+            QuestID.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            QuestID.HeaderText = "QuestID";
+            QuestID.Name = "QuestID";
+            QuestID.ReadOnly = true;
+            QuestID.Width = 74;
+            // 
+            // Chance
+            // 
+            Chance.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Chance.HeaderText = "Chance";
+            Chance.Name = "Chance";
+            Chance.ReadOnly = true;
+            Chance.Width = 72;
+            // 
+            // objectivesData
+            // 
+            objectivesData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            objectivesData.Columns.AddRange(new DataGridViewColumn[] { ID, ObjectiveType });
+            objectivesData.Location = new Point(482, 592);
+            objectivesData.Name = "objectivesData";
+            objectivesData.Size = new Size(192, 204);
+            objectivesData.TabIndex = 61;
+            // 
+            // ID
+            // 
+            ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            ID.HeaderText = "ID";
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 43;
+            // 
+            // ObjectiveType
+            // 
+            ObjectiveType.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            ObjectiveType.HeaderText = "ObjectiveType";
+            ObjectiveType.Name = "ObjectiveType";
+            ObjectiveType.ReadOnly = true;
+            ObjectiveType.Width = 106;
+            // 
+            // randomRewardAmountTextBox
+            // 
+            randomRewardAmountTextBox.Location = new Point(279, 792);
+            randomRewardAmountTextBox.Name = "randomRewardAmountTextBox";
+            randomRewardAmountTextBox.Size = new Size(54, 23);
+            randomRewardAmountTextBox.TabIndex = 63;
+            // 
+            // randomRewardAmountLabel
+            // 
+            randomRewardAmountLabel.AutoSize = true;
+            randomRewardAmountLabel.Location = new Point(12, 795);
+            randomRewardAmountLabel.Name = "randomRewardAmountLabel";
+            randomRewardAmountLabel.Size = new Size(176, 15);
+            randomRewardAmountLabel.TabIndex = 62;
+            randomRewardAmountLabel.Text = "Количество случайных наград";
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 866);
+            ClientSize = new Size(1110, 866);
+            Controls.Add(randomRewardAmountTextBox);
+            Controls.Add(randomRewardAmountLabel);
+            Controls.Add(objectivesData);
+            Controls.Add(rewardsData);
+            Controls.Add(questItemsData);
             Controls.Add(idTextBox);
             Controls.Add(seqQuest);
             Controls.Add(deleteQuestItems);
@@ -592,7 +773,6 @@
             Controls.Add(repLabel);
             Controls.Add(colorIdTextBox);
             Controls.Add(colorLabel);
-            Controls.Add(objectivesListBox);
             Controls.Add(objectiveLabel);
             Controls.Add(removeObjective);
             Controls.Add(addObjective);
@@ -606,11 +786,9 @@
             Controls.Add(rewardForOwner);
             Controls.Add(randomReward);
             Controls.Add(selectReward);
-            Controls.Add(rewardsListbox);
             Controls.Add(removeReward);
             Controls.Add(addReward);
             Controls.Add(rewardsLabel);
-            Controls.Add(questItemsListBox);
             Controls.Add(deleteQuestItem);
             Controls.Add(addQuestItem);
             Controls.Add(questItemsLabel);
@@ -635,8 +813,15 @@
             Controls.Add(questTitleTextBox);
             Controls.Add(titleLabel);
             Controls.Add(idLabel);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "MainPage";
             Text = "Редактор квестов by fkn_goose";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)questItemsData).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rewardsData).EndInit();
+            ((System.ComponentModel.ISupportInitialize)objectivesData).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -666,8 +851,6 @@
         private Label questItemsLabel;
         private Button addQuestItem;
         private Button deleteQuestItem;
-        private ListBox questItemsListBox;
-        private ListBox rewardsListbox;
         private Button removeReward;
         private Button addReward;
         private Label rewardsLabel;
@@ -684,7 +867,6 @@
         private Button addObjective;
         private Button removeObjective;
         private Label objectiveLabel;
-        private ListBox objectivesListBox;
         private MaskedTextBox colorIdTextBox;
         private Label colorLabel;
         private MaskedTextBox repQuestTextBox;
@@ -697,5 +879,29 @@
         private CheckBox deleteQuestItems;
         private CheckBox seqQuest;
         private TextBox idTextBox;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileTooltipMenu;
+        private ToolStripMenuItem createFile;
+        private ToolStripMenuItem openFile;
+        private ToolStripMenuItem validation;
+        private ToolStripMenuItem createDir;
+        private ToolStripMenuItem valDir;
+        private DataGridView questItemsData;
+        private DataGridViewTextBoxColumn ClassName;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridView rewardsData;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn Attachments;
+        private DataGridViewTextBoxColumn DamagePercent;
+        private DataGridViewTextBoxColumn QuestID;
+        private DataGridViewTextBoxColumn Chance;
+        private DataGridView objectivesData;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn ObjectiveType;
+        private OpenFileDialog openQuest;
+        private ToolStripMenuItem saveFile;
+        private MaskedTextBox randomRewardAmountTextBox;
+        private Label randomRewardAmountLabel;
     }
 }
