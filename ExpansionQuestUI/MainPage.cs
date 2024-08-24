@@ -82,7 +82,7 @@ namespace ExpansionQuestUI
         {
             List<QuestItem> questItems = new List<QuestItem>();
             if (questItemsData.Rows.Count > 1)
-                for (int i = 1; i < questItemsData.Rows.Count; i++)
+                for (int i = 0; i < questItemsData.Rows.Count - 1; i++)
                 {
                     questItems.Add(new QuestItem()
                     {
@@ -93,7 +93,7 @@ namespace ExpansionQuestUI
 
             List<Reward> rewards = new List<Reward>();
             if (rewardsData.Rows.Count > 1)
-                for (int i = 1; i < rewardsData.Rows.Count; i++)
+                for (int i = 0; i < rewardsData.Rows.Count - 1; i++)
                 {
                     rewards.Add(new Reward()
                     {
@@ -108,7 +108,7 @@ namespace ExpansionQuestUI
 
             List<Objective> objectives = new List<Objective>();
             if (objectivesData.Rows.Count > 1)
-                for (int i = 1; i < objectivesData.Rows.Count; i++)
+                for (int i = 0; i < objectivesData.Rows.Count - 1; i++)
                 {
                     objectives.Add(new Objective()
                     {
@@ -156,9 +156,9 @@ namespace ExpansionQuestUI
                 CurrentQuest = quest;
                 return quest;
             }
-            catch (Exception ex) 
-            { 
-                MessageBox.Show(ex.Message); 
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             Quest nullquest = null;
@@ -249,6 +249,24 @@ namespace ExpansionQuestUI
             removeObjective.Enabled = false;
             objectivesData.Enabled = false;
             randomRewardAmountTextBox.Enabled = false;
+        }
+
+        public void AddQuestItem(string classname, int amount)
+        {
+            questItemsData.Rows.Add(classname, amount.ToString());
+            Update();
+        }
+
+        public void AddReward(string classname, int amount, List<string> attachments, int damagePercent, int questID, double chance)
+        {
+            rewardsData.Rows.Add(classname, amount.ToString(), string.Join(",", attachments), damagePercent.ToString(), questID.ToString(), chance.ToString());
+            Update();
+        }
+
+        public void AddObjective(int id, int type)
+        {
+            objectivesData.Rows.Add(id.ToString(), type.ToString());
+            Update();
         }
 
         private void idTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -383,9 +401,43 @@ namespace ExpansionQuestUI
                 MessageBox.Show("Файл успешно сохранён", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
-            { 
-                MessageBox.Show(ex.Message); 
+            {
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        private void addQuestItem_Click(object sender, EventArgs e)
+        {
+            Form questItems = new QuestItems();
+            Enabled = false;
+            questItems.Show();
+        }
+
+        private void addReward_Click(object sender, EventArgs e)
+        {
+            Form rewards = new Rewards();
+            Enabled = false;
+            rewards.Show();
+        }
+
+        private void deleteQuestItem_Click(object sender, EventArgs e)
+        {
+            if (questItemsData.SelectedRows.Count < 1)
+                return;
+
+            foreach (DataGridViewRow row in questItemsData.SelectedRows)
+                if (!row.IsNewRow)
+                    questItemsData.Rows.Remove(row);
+        }
+
+        private void removeReward_Click(object sender, EventArgs e)
+        {
+            if (rewardsData.SelectedRows.Count < 1)
+                return;
+
+            foreach (DataGridViewRow row in rewardsData.SelectedRows)
+                if (!row.IsNewRow)
+                    rewardsData.Rows.Remove(row);
         }
     }
 }

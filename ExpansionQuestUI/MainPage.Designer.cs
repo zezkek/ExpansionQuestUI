@@ -312,6 +312,7 @@
             addQuestItem.TabIndex = 25;
             addQuestItem.Text = "Добавить";
             addQuestItem.UseVisualStyleBackColor = true;
+            addQuestItem.Click += addQuestItem_Click;
             // 
             // deleteQuestItem
             // 
@@ -321,6 +322,7 @@
             deleteQuestItem.TabIndex = 26;
             deleteQuestItem.Text = "Удалить";
             deleteQuestItem.UseVisualStyleBackColor = true;
+            deleteQuestItem.Click += deleteQuestItem_Click;
             // 
             // removeReward
             // 
@@ -330,6 +332,7 @@
             removeReward.TabIndex = 30;
             removeReward.Text = "Удалить";
             removeReward.UseVisualStyleBackColor = true;
+            removeReward.Click += removeReward_Click;
             // 
             // addReward
             // 
@@ -339,6 +342,7 @@
             addReward.TabIndex = 29;
             addReward.Text = "Добавить";
             addReward.UseVisualStyleBackColor = true;
+            addReward.Click += addReward_Click;
             // 
             // rewardsLabel
             // 
@@ -592,21 +596,21 @@
             // createFile
             // 
             createFile.Name = "createFile";
-            createFile.Size = new Size(180, 22);
+            createFile.Size = new Size(133, 22);
             createFile.Text = "Создать";
             createFile.Click += createFile_Click;
             // 
             // openFile
             // 
             openFile.Name = "openFile";
-            openFile.Size = new Size(180, 22);
+            openFile.Size = new Size(133, 22);
             openFile.Text = "Открыть";
             openFile.Click += openFile_Click;
             // 
             // saveFile
             // 
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(180, 22);
+            saveFile.Size = new Size(133, 22);
             saveFile.Text = "Сохранить";
             saveFile.Click += saveFile_Click;
             // 
