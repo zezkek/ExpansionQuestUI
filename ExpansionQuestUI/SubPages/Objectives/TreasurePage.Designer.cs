@@ -35,14 +35,14 @@
             timeLimitTextBox = new TextBox();
             idTextBox = new TextBox();
             showDistance = new CheckBox();
-            comboBox1 = new ComboBox();
+            contClassname = new ComboBox();
             label1 = new Label();
             digIn = new CheckBox();
             label2 = new Label();
             markerNameTextBox = new TextBox();
             label3 = new Label();
             comboBox2 = new ComboBox();
-            dataGridView1 = new DataGridView();
+            coordinatesData = new DataGridView();
             x = new DataGridViewTextBoxColumn();
             y = new DataGridViewTextBoxColumn();
             z = new DataGridViewTextBoxColumn();
@@ -53,7 +53,7 @@
             maxDidstanceTextBox = new TextBox();
             cancel = new Button();
             addTarget = new Button();
-            dataGridView2 = new DataGridView();
+            treasureData = new DataGridView();
             ClassName = new DataGridViewTextBoxColumn();
             Chance = new DataGridViewTextBoxColumn();
             Attachments = new DataGridViewTextBoxColumn();
@@ -61,8 +61,8 @@
             Max = new DataGridViewTextBoxColumn();
             Min = new DataGridViewTextBoxColumn();
             Variants = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)coordinatesData).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)treasureData).BeginInit();
             SuspendLayout();
             // 
             // textLabel
@@ -123,14 +123,14 @@
             showDistance.Text = "Показывать расстояние";
             showDistance.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // contClassname
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "NSg_Quest_Container_SafeContainer", "ExpansionQuestSeaChest", "ExpansionQuestDryBag_Blue" });
-            comboBox1.Location = new Point(169, 94);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(176, 23);
-            comboBox1.TabIndex = 63;
+            contClassname.FormattingEnabled = true;
+            contClassname.Items.AddRange(new object[] { "NSg_Quest_Container_SafeContainer", "ExpansionQuestSeaChest", "ExpansionQuestDryBag_Blue" });
+            contClassname.Location = new Point(169, 94);
+            contClassname.Name = "contClassname";
+            contClassname.Size = new Size(176, 23);
+            contClassname.TabIndex = 63;
             // 
             // label1
             // 
@@ -185,14 +185,14 @@
             comboBox2.Size = new Size(51, 23);
             comboBox2.TabIndex = 71;
             // 
-            // dataGridView1
+            // coordinatesData
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { x, y, z });
-            dataGridView1.Location = new Point(370, 97);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(343, 150);
-            dataGridView1.TabIndex = 73;
+            coordinatesData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            coordinatesData.Columns.AddRange(new DataGridViewColumn[] { x, y, z });
+            coordinatesData.Location = new Point(370, 97);
+            coordinatesData.Name = "coordinatesData";
+            coordinatesData.Size = new Size(343, 150);
+            coordinatesData.TabIndex = 73;
             // 
             // x
             // 
@@ -258,6 +258,7 @@
             cancel.TabIndex = 80;
             cancel.Text = "Закрыть";
             cancel.UseVisualStyleBackColor = true;
+            cancel.Click += cancel_Click;
             // 
             // addTarget
             // 
@@ -267,15 +268,16 @@
             addTarget.TabIndex = 79;
             addTarget.Text = "Добавить";
             addTarget.UseVisualStyleBackColor = true;
+            addTarget.Click += addTarget_Click;
             // 
-            // dataGridView2
+            // treasureData
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { ClassName, Chance, Attachments, QuantityPercent, Max, Min, Variants });
-            dataGridView2.Location = new Point(13, 309);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(700, 408);
-            dataGridView2.TabIndex = 81;
+            treasureData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            treasureData.Columns.AddRange(new DataGridViewColumn[] { ClassName, Chance, Attachments, QuantityPercent, Max, Min, Variants });
+            treasureData.Location = new Point(13, 309);
+            treasureData.Name = "treasureData";
+            treasureData.Size = new Size(700, 408);
+            treasureData.TabIndex = 81;
             // 
             // ClassName
             // 
@@ -328,7 +330,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(724, 767);
-            Controls.Add(dataGridView2);
+            Controls.Add(treasureData);
             Controls.Add(cancel);
             Controls.Add(addTarget);
             Controls.Add(label6);
@@ -336,14 +338,14 @@
             Controls.Add(label5);
             Controls.Add(textBox1);
             Controls.Add(label4);
-            Controls.Add(dataGridView1);
+            Controls.Add(coordinatesData);
             Controls.Add(label3);
             Controls.Add(comboBox2);
             Controls.Add(label2);
             Controls.Add(markerNameTextBox);
             Controls.Add(digIn);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(contClassname);
             Controls.Add(showDistance);
             Controls.Add(textLabel);
             Controls.Add(timeLimitLabel);
@@ -353,8 +355,8 @@
             Controls.Add(idTextBox);
             Name = "TreasurePage";
             Text = "TreasurePage";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)coordinatesData).EndInit();
+            ((System.ComponentModel.ISupportInitialize)treasureData).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -368,14 +370,14 @@
         private TextBox timeLimitTextBox;
         private TextBox idTextBox;
         private CheckBox showDistance;
-        private ComboBox comboBox1;
+        private ComboBox contClassname;
         private Label label1;
         private CheckBox digIn;
         private Label label2;
         private TextBox markerNameTextBox;
         private Label label3;
         private ComboBox comboBox2;
-        private DataGridView dataGridView1;
+        private DataGridView coordinatesData;
         private DataGridViewTextBoxColumn x;
         private DataGridViewTextBoxColumn y;
         private DataGridViewTextBoxColumn z;
@@ -386,7 +388,7 @@
         private TextBox maxDidstanceTextBox;
         private Button cancel;
         private Button addTarget;
-        private DataGridView dataGridView2;
+        private DataGridView treasureData;
         private DataGridViewTextBoxColumn ClassName;
         private DataGridViewTextBoxColumn Chance;
         private DataGridViewTextBoxColumn Attachments;
