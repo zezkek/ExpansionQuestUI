@@ -1,4 +1,4 @@
-﻿namespace ExpansionQuestUI.Models
+﻿namespace ExpansionQuestUI.Models.Items
 {
     public class QuestItem
     {

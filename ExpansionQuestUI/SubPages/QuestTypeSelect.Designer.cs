@@ -64,6 +64,7 @@
             selectTravel.TabIndex = 1;
             selectTravel.Text = "Travel/Добраться до точки";
             selectTravel.UseVisualStyleBackColor = true;
+            selectTravel.Click += selectTravel_Click;
             // 
             // selectCollect
             // 
@@ -73,6 +74,7 @@
             selectCollect.TabIndex = 2;
             selectCollect.Text = "Collect/Сбор";
             selectCollect.UseVisualStyleBackColor = true;
+            selectCollect.Click += selectCollect_Click;
             // 
             // selectDelivery
             // 
@@ -82,6 +84,7 @@
             selectDelivery.TabIndex = 3;
             selectDelivery.Text = "Delivery/Доставка";
             selectDelivery.UseVisualStyleBackColor = true;
+            selectDelivery.Click += selectDelivery_Click;
             // 
             // selectTreasure
             // 
@@ -91,6 +94,7 @@
             selectTreasure.TabIndex = 4;
             selectTreasure.Text = "Treasurehunt/Тайник";
             selectTreasure.UseVisualStyleBackColor = true;
+            selectTreasure.Click += selectTreasure_Click;
             // 
             // selectPatrol
             // 
@@ -124,6 +128,7 @@
             // 
             // selectAction
             // 
+            selectAction.Enabled = false;
             selectAction.Location = new Point(12, 244);
             selectAction.Name = "selectAction";
             selectAction.Size = new Size(178, 23);
@@ -133,6 +138,7 @@
             // 
             // selectCrafting
             // 
+            selectCrafting.Enabled = false;
             selectCrafting.Location = new Point(12, 273);
             selectCrafting.Name = "selectCrafting";
             selectCrafting.Size = new Size(178, 23);

@@ -83,6 +83,7 @@
             amountTextBox.Name = "amountTextBox";
             amountTextBox.Size = new Size(100, 23);
             amountTextBox.TabIndex = 8;
+            amountTextBox.KeyPress += amountTextBox_KeyPress;
             // 
             // minDIstTextBox
             // 
@@ -90,6 +91,7 @@
             minDIstTextBox.Name = "minDIstTextBox";
             minDIstTextBox.Size = new Size(100, 23);
             minDIstTextBox.TabIndex = 9;
+            minDIstTextBox.KeyPress += minDIstTextBox_KeyPress;
             // 
             // maxdisTextBox
             // 
@@ -97,6 +99,7 @@
             maxdisTextBox.Name = "maxdisTextBox";
             maxdisTextBox.Size = new Size(100, 23);
             maxdisTextBox.TabIndex = 10;
+            maxdisTextBox.KeyPress += maxdisTextBox_KeyPress;
             // 
             // zTextBox
             // 
@@ -104,6 +107,7 @@
             zTextBox.Name = "zTextBox";
             zTextBox.Size = new Size(100, 23);
             zTextBox.TabIndex = 11;
+            zTextBox.KeyPress += zTextBox_KeyPress;
             // 
             // yTextBox
             // 
@@ -111,6 +115,7 @@
             yTextBox.Name = "yTextBox";
             yTextBox.Size = new Size(100, 23);
             yTextBox.TabIndex = 12;
+            yTextBox.KeyPress += yTextBox_KeyPress;
             // 
             // xTextBox
             // 
@@ -118,6 +123,7 @@
             xTextBox.Name = "xTextBox";
             xTextBox.Size = new Size(100, 23);
             xTextBox.TabIndex = 13;
+            xTextBox.KeyPress += xTextBox_KeyPress;
             // 
             // timeLimitTextBox
             // 
@@ -125,6 +131,7 @@
             timeLimitTextBox.Name = "timeLimitTextBox";
             timeLimitTextBox.Size = new Size(51, 23);
             timeLimitTextBox.TabIndex = 14;
+            timeLimitTextBox.KeyPress += timeLimitTextBox_KeyPress;
             // 
             // textTextBox
             // 
@@ -344,7 +351,7 @@
             cancel.Name = "cancel";
             cancel.Size = new Size(75, 23);
             cancel.TabIndex = 42;
-            cancel.Text = "Отмена";
+            cancel.Text = "Закрыть";
             cancel.UseVisualStyleBackColor = true;
             cancel.Click += cancel_Click;
             // 

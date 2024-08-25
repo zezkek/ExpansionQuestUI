@@ -1,5 +1,7 @@
 ﻿using ExpansionQuestUI.Models;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 
 namespace ExpansionQuestUI.SubPages
 {
@@ -38,7 +40,11 @@ namespace ExpansionQuestUI.SubPages
                 file = File.Create($"Quests/{filenameTextbox.Text}.json");
                 file.Close();
 
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic)
+                };
                 Quest quest = new Quest();
                 File.WriteAllText($"Quests/{filenameTextbox.Text}.json", JsonSerializer.Serialize(quest, options));
             }

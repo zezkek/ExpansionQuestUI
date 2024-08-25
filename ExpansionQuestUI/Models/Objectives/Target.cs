@@ -17,11 +17,11 @@
         public double Amount { get; set; }
         public List<string> ClassNames { get; set; } = [];
         public int CountSelfKill { get; set; }
-        public List<string> AllowedWeapons { get; set; } = [];
-        public List<string> ExcludedClassNames { get; set; } = [];
+        public List<string> AllowedWeapons { get; set; }
+        public List<string> ExcludedClassNames { get; set; }
         public int CountAIPlayers { get; set; }
-        public List<string> AllowedTargetFactions { get; set; } = [];
-        public List<string> AllowedDamageZones { get; set; } = [];
+        public List<string> AllowedTargetFactions { get; set; }
+        public List<string> AllowedDamageZones { get; set; }
 
     }
 }

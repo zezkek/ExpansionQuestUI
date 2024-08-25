@@ -1,7 +1,10 @@
 using ExpansionQuestUI.Models;
+using ExpansionQuestUI.Models.Items;
 using ExpansionQuestUI.SubPages;
 using System.Data;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 using System.Windows.Forms;
 using static System.Windows.Forms.Design.AxImporter;
 
@@ -385,7 +388,6 @@ namespace ExpansionQuestUI
                 return;
             }
             var filename = Path.GetFileName(CurrentFile);
-            var options = new JsonSerializerOptions { WriteIndented = true };
 
             if (File.Exists($"Quests/{filename}"))
             {
@@ -397,6 +399,11 @@ namespace ExpansionQuestUI
             Directory.CreateDirectory("Quests");
             try
             {
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic)
+                };
                 File.WriteAllText($"Quests/{filename}", JsonSerializer.Serialize(quest, options));
                 MessageBox.Show("Файл успешно сохранён", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -438,6 +445,13 @@ namespace ExpansionQuestUI
             foreach (DataGridViewRow row in rewardsData.SelectedRows)
                 if (!row.IsNewRow)
                     rewardsData.Rows.Remove(row);
+        }
+
+        private void addObjective_Click(object sender, EventArgs e)
+        {
+            Form questselect = new QuestTypeSelect();
+            Enabled = false;
+            questselect.Show();
         }
     }
 }

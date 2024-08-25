@@ -452,6 +452,7 @@
             addObjective.TabIndex = 42;
             addObjective.Text = "Добавить";
             addObjective.UseVisualStyleBackColor = true;
+            addObjective.Click += addObjective_Click;
             // 
             // removeObjective
             // 
