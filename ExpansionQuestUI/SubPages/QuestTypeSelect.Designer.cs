@@ -154,6 +154,7 @@
             addOwn.TabIndex = 10;
             addOwn.Text = "Добавить без создания";
             addOwn.UseVisualStyleBackColor = true;
+            addOwn.Click += addOwn_Click;
             // 
             // close
             // 

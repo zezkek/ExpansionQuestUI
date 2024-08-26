@@ -49,7 +49,16 @@ namespace ExpansionQuestUI.SubPages
 
         private void selectTreasure_Click(object sender, EventArgs e)
         {
+            Form form = new TreasurePage();
+            form.Show();
+            Close();
+        }
 
+        private void addOwn_Click(object sender, EventArgs e)
+        {
+            MainPage.AddObjective(int.Parse(idTextBox.Text), int.Parse(objectiveTypeTextBox.Text));
+            MainPage.Enabled = true;
+            Close();
         }
     }
 }

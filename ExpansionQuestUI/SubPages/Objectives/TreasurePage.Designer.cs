@@ -114,6 +114,7 @@
             idTextBox.Name = "idTextBox";
             idTextBox.Size = new Size(51, 23);
             idTextBox.TabIndex = 32;
+            idTextBox.KeyPress += idTextBox_KeyPress;
             // 
             // showDistance
             // 
@@ -235,6 +236,7 @@
             itemsAmount.Name = "itemsAmount";
             itemsAmount.Size = new Size(51, 23);
             itemsAmount.TabIndex = 75;
+            itemsAmount.KeyPress += itemsAmount_KeyPress;
             // 
             // label6
             // 
@@ -251,6 +253,7 @@
             maxDidstanceTextBox.Name = "maxDidstanceTextBox";
             maxDidstanceTextBox.Size = new Size(100, 23);
             maxDidstanceTextBox.TabIndex = 77;
+            maxDidstanceTextBox.KeyPress += maxDidstanceTextBox_KeyPress;
             // 
             // cancel
             // 
