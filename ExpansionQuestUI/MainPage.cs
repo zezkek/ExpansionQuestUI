@@ -71,18 +71,62 @@ namespace ExpansionQuestUI
             deleteQuestItems.Checked = quest.DeleteQuestItems != 0;
 
             //structures
+
+            questItemsData.Rows.Clear();
             foreach (var questItem in quest.QuestItems)
                 questItemsData.Rows.Add(questItem.ClassName, questItem.Amount.ToString());
 
+            rewardsData.Rows.Clear();
             foreach (var reward in quest.Rewards)
                 rewardsData.Rows.Add(reward.ClassName, reward.Amount.ToString(), string.Join(",", reward.Attachments), reward.DamagePercent.ToString(), reward.QuestID.ToString(), reward.Chance.ToString());
 
+            objectivesData.Rows.Clear();
             foreach (var objective in quest.Objectives)
                 objectivesData.Rows.Add(objective.ID.ToString(), objective.ObjectiveType.ToString());
         }
 
         public Quest SaveCurrentQuest()
         {
+            #region Проверка на дурака
+
+            if (string.IsNullOrEmpty(idTextBox.Text))
+            {
+                MessageBox.Show("Не указан ID квеста");
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(questTitleTextBox.Text))
+            {
+                MessageBox.Show("Не укзаано название квеста");
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(objTextBox.Text))
+            {
+                MessageBox.Show("Не указан текст цели квеста");
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(giverNPCTextBox.Text))
+            {
+                MessageBox.Show("Не указан NPC выдающий квест");
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(turninNPCIDTexBox.Text))
+            {
+                MessageBox.Show("Не указан NPC принимающий квест");
+                return null;
+            }
+
+            if (objectivesData.Rows.Count <= 1)
+            {
+                MessageBox.Show("У квеста нет задач");
+                return null;
+            }
+
+            #endregion
+
             List<QuestItem> questItems = new List<QuestItem>();
             if (questItemsData.Rows.Count > 1)
                 for (int i = 0; i < questItemsData.Rows.Count - 1; i++)
@@ -383,10 +427,8 @@ namespace ExpansionQuestUI
         {
             var quest = SaveCurrentQuest();
             if (quest == null)
-            {
-                MessageBox.Show("Ошибка при сохранении файла");
                 return;
-            }
+
             var filename = Path.GetFileName(CurrentFile);
 
             if (File.Exists($"Quests/{filename}"))

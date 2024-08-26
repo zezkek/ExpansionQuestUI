@@ -165,7 +165,6 @@
             rewardAttachmentsTextBox.Size = new Size(171, 96);
             rewardAttachmentsTextBox.TabIndex = 14;
             rewardAttachmentsTextBox.Text = "";
-            rewardAttachmentsTextBox.KeyPress += rewardAttachmentsTextBox_KeyPress;
             // 
             // additionalLabel
             // 

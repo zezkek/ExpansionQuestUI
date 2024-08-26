@@ -7,14 +7,18 @@ namespace ExpansionQuestUI.SubPages
 {
     public partial class FilenamePage : Form
     {
+        private readonly MainPage mainPage;
         public FilenamePage()
         {
+            mainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
             InitializeComponent();
             ControlBox = false;
         }
 
         private void cancelFileCreateButton_Click(object sender, EventArgs e)
         {
+            mainPage.DisableBlock();
+            mainPage.Enabled = true;
             Close();
         }
 
@@ -54,13 +58,12 @@ namespace ExpansionQuestUI.SubPages
                 return;
             }
 
-            var mainform = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
-            if (mainform != null)
+            if (mainPage != null)
             {
-                mainform.SetCurrentFileName($"Quests/{filenameTextbox.Text}.json");
-                mainform.InitQuest(new Quest());
-                mainform.DisableBlock();
-                mainform.Enabled = true;
+                mainPage.SetCurrentFileName($"Quests/{filenameTextbox.Text}.json");
+                mainPage.InitQuest(new Quest());
+                mainPage.DisableBlock();
+                mainPage.Enabled = true;
             }
             Close();
         }
