@@ -462,6 +462,7 @@
             removeObjective.TabIndex = 43;
             removeObjective.Text = "Удалить";
             removeObjective.UseVisualStyleBackColor = true;
+            removeObjective.Click += removeObjective_Click;
             // 
             // objectiveLabel
             // 

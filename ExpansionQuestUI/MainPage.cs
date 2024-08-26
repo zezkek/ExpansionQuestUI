@@ -5,8 +5,6 @@ using System.Data;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using System.Windows.Forms;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace ExpansionQuestUI
 {
@@ -454,6 +452,16 @@ namespace ExpansionQuestUI
             Form questselect = new QuestTypeSelect();
             Enabled = false;
             questselect.Show();
+        }
+
+        private void removeObjective_Click(object sender, EventArgs e)
+        {
+            if (objectivesData.SelectedRows.Count < 1)
+                return;
+
+            foreach (DataGridViewRow row in objectivesData.SelectedRows)
+                if (!row.IsNewRow)
+                    objectivesData.Rows.Remove(row);
         }
     }
 }
