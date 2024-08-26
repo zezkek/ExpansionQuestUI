@@ -1,4 +1,5 @@
-﻿using ExpansionQuestUI.Models.Objectives;
+﻿using ExpansionQuestUI.Models.Items;
+using ExpansionQuestUI.Models.Objectives;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -57,25 +58,50 @@ namespace ExpansionQuestUI.SubPages.Objectives
 
             #endregion
 
-            Target target;
+            List<List<double>> positions = new List<List<double>>();
+            foreach (DataGridViewRow row in coordinatesData.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                positions.Add(new List<double>() { double.Parse(row.Cells[0].ToString()), double.Parse(row.Cells[1].ToString()), double.Parse(row.Cells[2].ToString()) });
+            }
+
+            List<Loot> loots = new List<Loot>();
+            foreach (DataGridViewRow row in treasureData.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                loots.Add(new Loot() 
+                { 
+                    Name = row.Cells[0].ToString(),
+                    Chance = double.Parse(row.Cells[1].ToString()),
+                    Attachments = row.Cells[2].ToString().Split(',').ToList(),
+                    QuantityPercent = int.Parse(row.Cells[3].ToString()),
+                    Max = int.Parse(row.Cells[4].ToString()),
+                    Min = int.Parse(row.Cells[5].ToString()),
+                    Variants = row.Cells[6].ToString().Split(',').ToList(),
+                });
+            }
+
+            Treasure treasure;
             try
             {
-                target = new()
+                treasure = new()
                 {
                     ID = int.Parse(idTextBox.Text),
                     ObjectiveText = textTextBox.Text,
                     TimeLimit = int.Parse(timeLimitTextBox.Text),
-                    Position = [double.Parse(xTextBox.Text), double.Parse(yTextBox.Text), double.Parse(zTextBox.Text)],
-                    MaxDistance = double.Parse(maxdisTextBox.Text),
-                    MinDistance = double.Parse(minDIstTextBox.Text),
-                    Amount = int.Parse(amountTextBox.Text),
-                    ClassNames = classnamesTextBox.Text.Split(",").ToList(),
-                    CountSelfKill = selfkill.Checked ? 1 : 0,
-                    AllowedWeapons = allowedWeaponsTextBox.Text.Split(",").ToList(),
-                    ExcludedClassNames = excludedTextBox.Text.Split(",").ToList(),
-                    CountAIPlayers = countAI.Checked ? 1 : 0,
-                    AllowedTargetFactions = allowedTargetFactionsTextBox.Text.Split(",").ToList(),
-                    AllowedDamageZones = allowedDamageZonesTextBox.Text.Split(",").ToList()
+                    MaxDistance = double.Parse(maxDidstanceTextBox.Text),
+                    ShowDistance = showDistance.Checked ? 1 : 0,
+                    ContainerName = contClassname.Text,
+                    DigInStash = digIn.Checked ? 1 : 0,
+                    MarkerName = markerNameTextBox.Text,
+                    MarkerVisibility = int.Parse(markerVis.Text),
+                    LootItemsAmount = int.Parse(itemsAmount.Text),
+                    Positions = positions,
+                    Loot = loots
                 };
             }
             catch (Exception ex)
@@ -91,14 +117,14 @@ namespace ExpansionQuestUI.SubPages.Objectives
                 return;
             }
 
-            if (File.Exists($"Objectives/Target/{filenameTextbox.Text}.json"))
+            if (File.Exists($"Objectives/TreasureHunt/{filenameTextbox.Text}.json"))
             {
-                DialogResult result = MessageBox.Show("Перезаписать файл в папке Target?", "Сохранение файла", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                DialogResult result = MessageBox.Show("Перезаписать файл в папке TreasureHunt?", "Сохранение файла", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 if (result == DialogResult.No)
                     return;
             }
 
-            Directory.CreateDirectory("Objectives/Target");
+            Directory.CreateDirectory("Objectives/TreasureHunt");
             try
             {
                 var options = new JsonSerializerOptions
@@ -106,7 +132,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
                     WriteIndented = true,
                     Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic)
                 };
-                File.WriteAllText($"Objectives/Target/{filenameTextbox.Text}.json", JsonSerializer.Serialize(target, options));
+                File.WriteAllText($"Objectives/TreasureHunt/{filenameTextbox.Text}.json", JsonSerializer.Serialize(treasure, options));
                 MessageBox.Show("Файл успешно сохранён", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -114,7 +140,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
                 MessageBox.Show(ex.Message);
             }
 
-            MainPage.AddObjective(target.ID, target.ObjectiveType);
+            MainPage.AddObjective(treasure.ID, treasure.ObjectiveType);
             MainPage.Enabled = true;
             Close();
         }

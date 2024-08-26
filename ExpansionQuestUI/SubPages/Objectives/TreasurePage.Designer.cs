@@ -41,14 +41,14 @@
             label2 = new Label();
             markerNameTextBox = new TextBox();
             label3 = new Label();
-            comboBox2 = new ComboBox();
+            markerVis = new ComboBox();
             coordinatesData = new DataGridView();
             x = new DataGridViewTextBoxColumn();
             y = new DataGridViewTextBoxColumn();
             z = new DataGridViewTextBoxColumn();
             label4 = new Label();
             label5 = new Label();
-            textBox1 = new TextBox();
+            itemsAmount = new TextBox();
             label6 = new Label();
             maxDidstanceTextBox = new TextBox();
             cancel = new Button();
@@ -61,6 +61,8 @@
             Max = new DataGridViewTextBoxColumn();
             Min = new DataGridViewTextBoxColumn();
             Variants = new DataGridViewTextBoxColumn();
+            filenameLabel = new Label();
+            filenameTextbox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)coordinatesData).BeginInit();
             ((System.ComponentModel.ISupportInitialize)treasureData).BeginInit();
             SuspendLayout();
@@ -116,7 +118,7 @@
             // showDistance
             // 
             showDistance.AutoSize = true;
-            showDistance.Location = new Point(13, 189);
+            showDistance.Location = new Point(13, 214);
             showDistance.Name = "showDistance";
             showDistance.Size = new Size(157, 19);
             showDistance.TabIndex = 62;
@@ -144,7 +146,7 @@
             // digIn
             // 
             digIn.AutoSize = true;
-            digIn.Location = new Point(13, 215);
+            digIn.Location = new Point(13, 240);
             digIn.Name = "digIn";
             digIn.Size = new Size(137, 19);
             digIn.TabIndex = 65;
@@ -176,14 +178,14 @@
             label3.TabIndex = 72;
             label3.Text = "Тип маркера";
             // 
-            // comboBox2
+            // markerVis
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "2", "4", "6" });
-            comboBox2.Location = new Point(169, 152);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(51, 23);
-            comboBox2.TabIndex = 71;
+            markerVis.FormattingEnabled = true;
+            markerVis.Items.AddRange(new object[] { "2", "4", "6" });
+            markerVis.Location = new Point(169, 152);
+            markerVis.Name = "markerVis";
+            markerVis.Size = new Size(51, 23);
+            markerVis.TabIndex = 71;
             // 
             // coordinatesData
             // 
@@ -227,12 +229,12 @@
             label5.TabIndex = 76;
             label5.Text = "Кол-во предметов";
             // 
-            // textBox1
+            // itemsAmount
             // 
-            textBox1.Location = new Point(526, 10);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(51, 23);
-            textBox1.TabIndex = 75;
+            itemsAmount.Location = new Point(526, 10);
+            itemsAmount.Name = "itemsAmount";
+            itemsAmount.Size = new Size(51, 23);
+            itemsAmount.TabIndex = 75;
             // 
             // label6
             // 
@@ -325,22 +327,40 @@
             Variants.HeaderText = "Variants";
             Variants.Name = "Variants";
             // 
+            // filenameLabel
+            // 
+            filenameLabel.AutoSize = true;
+            filenameLabel.Location = new Point(11, 184);
+            filenameLabel.Name = "filenameLabel";
+            filenameLabel.Size = new Size(97, 15);
+            filenameLabel.TabIndex = 83;
+            filenameLabel.Text = "Название файла";
+            // 
+            // filenameTextbox
+            // 
+            filenameTextbox.Location = new Point(169, 181);
+            filenameTextbox.Name = "filenameTextbox";
+            filenameTextbox.Size = new Size(100, 23);
+            filenameTextbox.TabIndex = 82;
+            // 
             // TreasurePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(724, 767);
+            Controls.Add(filenameLabel);
+            Controls.Add(filenameTextbox);
             Controls.Add(treasureData);
             Controls.Add(cancel);
             Controls.Add(addTarget);
             Controls.Add(label6);
             Controls.Add(maxDidstanceTextBox);
             Controls.Add(label5);
-            Controls.Add(textBox1);
+            Controls.Add(itemsAmount);
             Controls.Add(label4);
             Controls.Add(coordinatesData);
             Controls.Add(label3);
-            Controls.Add(comboBox2);
+            Controls.Add(markerVis);
             Controls.Add(label2);
             Controls.Add(markerNameTextBox);
             Controls.Add(digIn);
@@ -376,14 +396,14 @@
         private Label label2;
         private TextBox markerNameTextBox;
         private Label label3;
-        private ComboBox comboBox2;
+        private ComboBox markerVis;
         private DataGridView coordinatesData;
         private DataGridViewTextBoxColumn x;
         private DataGridViewTextBoxColumn y;
         private DataGridViewTextBoxColumn z;
         private Label label4;
         private Label label5;
-        private TextBox textBox1;
+        private TextBox itemsAmount;
         private Label label6;
         private TextBox maxDidstanceTextBox;
         private Button cancel;
@@ -396,5 +416,7 @@
         private DataGridViewTextBoxColumn Max;
         private DataGridViewTextBoxColumn Min;
         private DataGridViewTextBoxColumn Variants;
+        private Label filenameLabel;
+        private TextBox filenameTextbox;
     }
 }
