@@ -77,15 +77,24 @@ namespace ExpansionQuestUI.SubPages.Objectives
                 {
                     if (row.IsNewRow)
                         continue;
+
+                    var attachments = row?.Cells[2]?.Value?.ToString()?.Split(',')?.ToList();
+                    if (string.IsNullOrEmpty(attachments[0]))
+                        attachments = new List<string>();
+
+                    var variants = row.Cells[6]?.Value?.ToString().Split(',').ToList();
+                    if (string.IsNullOrEmpty(variants[0]))
+                        variants = new List<string>();
+
                     var loot = new Loot()
                     {
                         Name = row?.Cells[0]?.Value?.ToString(),
                         Chance = double.Parse(row?.Cells[1]?.Value?.ToString()),
-                        Attachments = row?.Cells[2]?.Value?.ToString()?.Split(',')?.ToList(),
+                        Attachments = attachments,
                         QuantityPercent = int.Parse(row?.Cells[3]?.Value?.ToString()),
                         Max = int.Parse(row?.Cells[4]?.Value?.ToString()),
                         Min = int.Parse(row?.Cells[5]?.Value?.ToString()),
-                        Variants = row.Cells[6]?.Value?.ToString().Split(',').ToList(),
+                        Variants = variants,
                     };
 
                     loot.Attachments ??= new List<string>();

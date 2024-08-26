@@ -77,6 +77,26 @@ namespace ExpansionQuestUI.SubPages.Objectives
             Target target;
             try
             {
+                var classNames = classnamesTextBox.Text.Split(",").ToList();
+                if (string.IsNullOrEmpty(classNames[0]))
+                    classNames = new List<string>();
+
+                var allowedWeapons = allowedWeaponsTextBox.Text.Split(",").ToList();
+                if (string.IsNullOrEmpty(allowedWeapons[0]))
+                    allowedWeapons = new List<string>();
+
+                var excludedClassNames = excludedTextBox.Text.Split(",").ToList();
+                if (string.IsNullOrEmpty(excludedClassNames[0]))
+                    excludedClassNames = new List<string>();
+
+                var allowedTargetFactions = allowedTargetFactionsTextBox.Text.Split(",").ToList();
+                if (string.IsNullOrEmpty(allowedTargetFactions[0]))
+                    allowedTargetFactions = new List<string>();
+
+                var allowedDamageZones = allowedDamageZonesTextBox.Text.Split(",").ToList();
+                if (string.IsNullOrEmpty(allowedDamageZones[0]))
+                    allowedDamageZones = new List<string>();
+
                 target = new()
                 {
                     ID = int.Parse(idTextBox.Text),
@@ -86,13 +106,13 @@ namespace ExpansionQuestUI.SubPages.Objectives
                     MaxDistance = double.Parse(maxdisTextBox.Text),
                     MinDistance = double.Parse(minDIstTextBox.Text),
                     Amount = int.Parse(amountTextBox.Text),
-                    ClassNames = classnamesTextBox.Text.Split(",").ToList(),
+                    ClassNames = classNames,
                     CountSelfKill = selfkill.Checked ? 1 : 0,
-                    AllowedWeapons = allowedWeaponsTextBox.Text.Split(",").ToList(),
-                    ExcludedClassNames = excludedTextBox.Text.Split(",").ToList(),
+                    AllowedWeapons = allowedWeapons,
+                    ExcludedClassNames = excludedClassNames,
                     CountAIPlayers = countAI.Checked ? 1 : 0,
-                    AllowedTargetFactions = allowedTargetFactionsTextBox.Text.Split(",").ToList(),
-                    AllowedDamageZones = allowedDamageZonesTextBox.Text.Split(",").ToList()
+                    AllowedTargetFactions = allowedTargetFactions,
+                    AllowedDamageZones = allowedDamageZones
                 };
             }
             catch (Exception ex)

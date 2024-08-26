@@ -142,11 +142,14 @@ namespace ExpansionQuestUI
             if (rewardsData.Rows.Count > 1)
                 for (int i = 0; i < rewardsData.Rows.Count - 1; i++)
                 {
+                    var attachments = rewardsData.Rows[i]?.Cells[2].Value.ToString().Split(',').ToList();
+                    if (string.IsNullOrEmpty(attachments[0]))
+                        attachments = new List<string>();
                     rewards.Add(new Reward()
                     {
                         ClassName = rewardsData.Rows[i]?.Cells[0].Value.ToString(),
                         Amount = int.Parse(rewardsData.Rows[i]?.Cells[1].Value.ToString()),
-                        Attachments = rewardsData.Rows[i]?.Cells[2].Value.ToString().Split(',').ToList(),
+                        Attachments = attachments,
                         DamagePercent = int.Parse(rewardsData.Rows[i]?.Cells[3].Value.ToString()),
                         QuestID = int.Parse(rewardsData.Rows[i]?.Cells[4].Value.ToString()),
                         Chance = double.Parse(rewardsData.Rows[i]?.Cells[5].Value.ToString())
