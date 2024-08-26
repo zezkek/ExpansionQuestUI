@@ -24,6 +24,8 @@ namespace ExpansionQuestUI
             openQuest.Filter = "Файлы квестов (*.json)|*.json";
             openQuest.DefaultExt = "json";
             openQuest.AddExtension = true;
+            openQuest.InitialDirectory = Directory.GetCurrentDirectory();
+            openQuest.RestoreDirectory = false;
         }
 
         public void SetCurrentFileName(string fileName)
