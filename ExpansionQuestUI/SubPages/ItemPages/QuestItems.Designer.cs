@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestItems));
             questItemClassnameLabel = new Label();
             questItemAmountLabel = new Label();
             questItemClassnameTextBox = new TextBox();
@@ -100,6 +101,7 @@
             Controls.Add(questItemClassnameTextBox);
             Controls.Add(questItemAmountLabel);
             Controls.Add(questItemClassnameLabel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "QuestItems";
             Text = "QuestItems";
             ResumeLayout(false);

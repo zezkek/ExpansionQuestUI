@@ -12,6 +12,9 @@ namespace ExpansionQuestUI.SubPages.ItemPages
 
             collectPage = Application.OpenForms.OfType<CollectPage>().FirstOrDefault();
             deliveryPage = Application.OpenForms.OfType<DeliveryPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             amountTextBox.Text = "1";
             quantityTexBox.Text = "-1";
             minQuantityTextBox.Text = "-1";

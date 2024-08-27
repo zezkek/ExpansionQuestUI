@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectItems));
             add = new Button();
             close = new Button();
             label1 = new Label();
@@ -139,6 +140,7 @@
             Controls.Add(label1);
             Controls.Add(close);
             Controls.Add(add);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CollectItems";
             Text = "CollectItems";
             ResumeLayout(false);

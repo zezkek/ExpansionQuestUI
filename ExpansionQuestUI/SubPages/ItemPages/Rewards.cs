@@ -9,6 +9,9 @@
 
             ControlBox = false;
             Mainform = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             rewardAmountTextBox.Text = "1";
             rewardDamageTextBox.Text = "0";
             rewardQuestTextBox.Text = "-1";

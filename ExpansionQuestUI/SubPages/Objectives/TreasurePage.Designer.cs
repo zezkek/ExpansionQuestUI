@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TreasurePage));
             textLabel = new Label();
             timeLimitLabel = new Label();
             idLabel = new Label();
@@ -376,6 +377,7 @@
             Controls.Add(textTextBox);
             Controls.Add(timeLimitTextBox);
             Controls.Add(idTextBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TreasurePage";
             Text = "TreasurePage";
             ((System.ComponentModel.ISupportInitialize)coordinatesData).EndInit();

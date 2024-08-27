@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeliveryPage));
             filenameLabel = new Label();
             filenameTextbox = new TextBox();
             cancel = new Button();
@@ -289,6 +290,7 @@
             Controls.Add(textTextBox);
             Controls.Add(timeLimitTextBox);
             Controls.Add(idTextBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DeliveryPage";
             Text = "DeliveryPage";
             ((System.ComponentModel.ISupportInitialize)itemsData).EndInit();

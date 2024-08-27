@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestTypeSelect));
             selectTraget = new Button();
             selectTravel = new Button();
             selectCollect = new Button();
@@ -219,6 +220,7 @@
             Controls.Add(selectCollect);
             Controls.Add(selectTravel);
             Controls.Add(selectTraget);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "QuestTypeSelect";
             Text = "Создать задачу";
             ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TravelPage));
             textLabel = new Label();
             xlabel = new Label();
             zLabel = new Label();
@@ -291,6 +292,7 @@
             Controls.Add(zTextBox);
             Controls.Add(radiusTextBox);
             Controls.Add(idTextBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TravelPage";
             Text = "TravelPage";
             ResumeLayout(false);

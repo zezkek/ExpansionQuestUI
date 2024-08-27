@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rewards));
             rewardClassnameLabel = new Label();
             rewardAmountLabel = new Label();
             rewardAttachmetsLabel = new Label();
@@ -195,6 +196,7 @@
             Controls.Add(rewardAttachmetsLabel);
             Controls.Add(rewardAmountLabel);
             Controls.Add(rewardClassnameLabel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Rewards";
             Text = "Rewards";
             ResumeLayout(false);

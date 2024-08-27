@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectPage));
             textLabel = new Label();
             timeLimitLabel = new Label();
             idLabel = new Label();
@@ -260,6 +261,7 @@
             Controls.Add(textTextBox);
             Controls.Add(timeLimitTextBox);
             Controls.Add(idTextBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CollectPage";
             Text = "CollectPage";
             ((System.ComponentModel.ISupportInitialize)itemsData).EndInit();

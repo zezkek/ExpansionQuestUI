@@ -14,6 +14,9 @@ namespace ExpansionQuestUI.SubPages.Objectives
             InitializeComponent();
             ControlBox = false;
             MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             timeLimitTextBox.Text = "-1";
             contClassname.Text = "NSg_Quest_Container_SafeContainer";
             markerVis.Text = "4";

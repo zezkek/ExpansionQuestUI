@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Loot));
             rewardClassnameLabel = new Label();
             chanceLabel = new Label();
             rewardAttachmetsLabel = new Label();
@@ -223,6 +224,7 @@
             Controls.Add(rewardAttachmetsLabel);
             Controls.Add(chanceLabel);
             Controls.Add(rewardClassnameLabel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Loot";
             Text = "Loot";
             ResumeLayout(false);

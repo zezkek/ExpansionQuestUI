@@ -10,6 +10,8 @@ namespace ExpansionQuestUI.SubPages
             InitializeComponent();
             ControlBox = false;
             MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
         }
 
         private void close_Click(object sender, EventArgs e)

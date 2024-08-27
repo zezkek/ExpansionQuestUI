@@ -13,6 +13,8 @@ namespace ExpansionQuestUI.SubPages
             mainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
             InitializeComponent();
             ControlBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
         }
 
         private void cancelFileCreateButton_Click(object sender, EventArgs e)

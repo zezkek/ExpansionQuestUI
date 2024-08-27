@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TargetPage));
             idTextBox = new TextBox();
             amountTextBox = new TextBox();
             minDIstTextBox = new TextBox();
@@ -451,6 +452,7 @@
             Controls.Add(minDIstTextBox);
             Controls.Add(amountTextBox);
             Controls.Add(idTextBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TargetPage";
             Text = "Target";
             ResumeLayout(false);

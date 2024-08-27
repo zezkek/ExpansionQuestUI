@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             idLabel = new Label();
             titleLabel = new Label();
             questTitleTextBox = new TextBox();
@@ -820,6 +821,7 @@
             Controls.Add(titleLabel);
             Controls.Add(idLabel);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "MainPage";
             Text = "Редактор квестов by fkn_goose";

@@ -17,6 +17,8 @@ namespace ExpansionQuestUI
             InitializeComponent();
 
             EnableBlock();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
 
             openQuest.FileName = "Роуг чурка";
             openQuest.Filter = "Файлы квестов (*.json)|*.json";

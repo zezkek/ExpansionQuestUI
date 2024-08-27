@@ -13,6 +13,9 @@ namespace ExpansionQuestUI.SubPages.Objectives
             InitializeComponent();
             ControlBox = false;
             MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             timeLimitTextBox.Text = "-1";
             maxdisTextBox.Text = "-1,0";
             minDIstTextBox.Text = "-1,0";

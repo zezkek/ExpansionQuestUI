@@ -12,6 +12,9 @@ namespace ExpansionQuestUI.SubPages.ItemPages
             ControlBox = false;
             treasurePage = Application.OpenForms.OfType<TreasurePage>().FirstOrDefault();
             InitFields();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
         }
 
         private void InitFields()

@@ -9,6 +9,9 @@
 
             Mainform = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
             ControlBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             Text = "Добавить квестовый предмет";
             questItemAmountTextBox.Text = "1";
         }
