@@ -18,9 +18,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
 
             timeLimitTextBox.Text = "-1";
             radiusTextBox.Text = "-1,0";
-            xTextBox.Text = "0,0";
-            yTextBox.Text = "0,0";
-            zTextBox.Text = "0,0";
+            coordsTextBox.Text = "0.0, 0.0, 0.0";
             onEnter.Checked = true;
         }
 
@@ -50,21 +48,9 @@ namespace ExpansionQuestUI.SubPages.Objectives
             if (string.IsNullOrEmpty(timeLimitTextBox.Text))
                 timeLimitTextBox.Text = "-1";
 
-            if (string.IsNullOrEmpty(xTextBox.Text))
+            if (string.IsNullOrEmpty(coordsTextBox.Text) || string.Equals(coordsTextBox.Text, "0.0, 0.0, 0.0"))
             {
-                MessageBox.Show("Не задана первая координата");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(yTextBox.Text))
-            {
-                MessageBox.Show("Не задана вторая координата");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(zTextBox.Text))
-            {
-                MessageBox.Show("Не задана третья координата");
+                MessageBox.Show("Не заданы координаты");
                 return;
             }
 
@@ -88,12 +74,17 @@ namespace ExpansionQuestUI.SubPages.Objectives
             Travel travel;
             try
             {
+                var strCoords = coordsTextBox.Text.Replace(" ", string.Empty);
+                var strCoordsList = strCoords.Split(',').ToList();
+                for (int i = 0; i < 3; i++)
+                    strCoordsList[i] = strCoordsList[i].Replace(".", ",");
+
                 travel = new()
                 {
                     ID = int.Parse(idTextBox.Text),
                     ObjectiveText = textTextBox.Text,
                     TimeLimit = int.Parse(timeLimitTextBox.Text),
-                    Position = [double.Parse(xTextBox.Text), double.Parse(yTextBox.Text), double.Parse(zTextBox.Text)],
+                    Position = strCoordsList.Select(x=>double.Parse(x)).ToList(),
                     MaxDistance = double.Parse(radiusTextBox.Text),
                     MarkerName = markerNameTextBox.Text,
                     ShowDistance = showDistance.Checked ? 1 : 0,

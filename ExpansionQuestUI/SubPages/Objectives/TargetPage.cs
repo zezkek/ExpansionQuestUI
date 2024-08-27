@@ -19,9 +19,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
             timeLimitTextBox.Text = "-1";
             maxdisTextBox.Text = "-1,0";
             minDIstTextBox.Text = "-1,0";
-            xTextBox.Text = "0,0";
-            yTextBox.Text = "0,0";
-            zTextBox.Text = "0,0";
+            coordsTextBox.Text = "0.0, 0.0, 0.0";
             amountTextBox.Text = "1";
         }
 
@@ -42,7 +40,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
                 return;
             }
 
-            if (string.IsNullOrEmpty(textTextBox.Text)) 
+            if (string.IsNullOrEmpty(textTextBox.Text))
             {
                 MessageBox.Show("Не задан текст задачи");
                 return;
@@ -57,14 +55,8 @@ namespace ExpansionQuestUI.SubPages.Objectives
             if (string.IsNullOrEmpty(timeLimitTextBox.Text))
                 timeLimitTextBox.Text = "-1";
 
-            if (string.IsNullOrEmpty(xTextBox.Text))
-                xTextBox.Text = "0,0";
-
-            if (string.IsNullOrEmpty(yTextBox.Text))
-                yTextBox.Text = "0,0";
-
-            if (string.IsNullOrEmpty(zTextBox.Text))
-                zTextBox.Text = "0,0";
+            if (string.IsNullOrEmpty(coordsTextBox.Text))
+                coordsTextBox.Text = "0.0, 0.0, 0.0";
 
             if (string.IsNullOrEmpty(maxdisTextBox.Text))
                 maxdisTextBox.Text = "-1,0";
@@ -100,12 +92,17 @@ namespace ExpansionQuestUI.SubPages.Objectives
                 if (string.IsNullOrEmpty(allowedDamageZones[0]))
                     allowedDamageZones = new List<string>();
 
+                var strCoords = coordsTextBox.Text.Replace(" ", string.Empty);
+                var strCoordsList = strCoords.Split(',').ToList();
+                for (int i = 0; i < 3; i++)
+                    strCoordsList[i] = strCoordsList[i].Replace(".", ",");
+
                 target = new()
                 {
                     ID = int.Parse(idTextBox.Text),
                     ObjectiveText = textTextBox.Text,
                     TimeLimit = int.Parse(timeLimitTextBox.Text),
-                    Position = [double.Parse(xTextBox.Text), double.Parse(yTextBox.Text), double.Parse(zTextBox.Text)],
+                    Position = strCoordsList.Select(x => double.Parse(x)).ToList(),
                     MaxDistance = double.Parse(maxdisTextBox.Text),
                     MinDistance = double.Parse(minDIstTextBox.Text),
                     Amount = int.Parse(amountTextBox.Text),
@@ -141,10 +138,10 @@ namespace ExpansionQuestUI.SubPages.Objectives
             Directory.CreateDirectory("Objectives/Target");
             try
             {
-                var options = new JsonSerializerOptions 
-                { 
-                    WriteIndented = true, 
-                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic) 
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic)
                 };
                 File.WriteAllText($"Objectives/Target/{filenameTextbox.Text}.json", JsonSerializer.Serialize(target, options));
                 MessageBox.Show("Файл успешно сохранён", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -217,7 +214,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
 
         private void timeLimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar)|| char.IsControl(e.KeyChar))
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
                 e.Handled = false;
             else
                 e.Handled = true;

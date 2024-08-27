@@ -33,9 +33,6 @@
             amountTextBox = new TextBox();
             minDIstTextBox = new TextBox();
             maxdisTextBox = new TextBox();
-            zTextBox = new TextBox();
-            yTextBox = new TextBox();
-            xTextBox = new TextBox();
             timeLimitTextBox = new TextBox();
             textTextBox = new TextBox();
             idLabel = new Label();
@@ -43,13 +40,10 @@
             allowedTargetFactionsLabel = new Label();
             amountLabel = new Label();
             maxDistLabel = new Label();
-            yLabel = new Label();
             timeLimitLabel = new Label();
             excludedLabel = new Label();
             classnamesLabel = new Label();
             minDistLabel = new Label();
-            zLabel = new Label();
-            xlabel = new Label();
             textLabel = new Label();
             classnamesTextBox = new RichTextBox();
             selfkill = new CheckBox();
@@ -68,6 +62,8 @@
             filenameLabel = new Label();
             filenameTextbox = new TextBox();
             countAI = new CheckBox();
+            xlabel = new Label();
+            coordsTextBox = new TextBox();
             SuspendLayout();
             // 
             // idTextBox
@@ -80,7 +76,7 @@
             // 
             // amountTextBox
             // 
-            amountTextBox.Location = new Point(170, 238);
+            amountTextBox.Location = new Point(170, 181);
             amountTextBox.Name = "amountTextBox";
             amountTextBox.Size = new Size(100, 23);
             amountTextBox.TabIndex = 8;
@@ -88,7 +84,7 @@
             // 
             // minDIstTextBox
             // 
-            minDIstTextBox.Location = new Point(170, 209);
+            minDIstTextBox.Location = new Point(170, 152);
             minDIstTextBox.Name = "minDIstTextBox";
             minDIstTextBox.Size = new Size(100, 23);
             minDIstTextBox.TabIndex = 9;
@@ -96,35 +92,11 @@
             // 
             // maxdisTextBox
             // 
-            maxdisTextBox.Location = new Point(170, 180);
+            maxdisTextBox.Location = new Point(170, 123);
             maxdisTextBox.Name = "maxdisTextBox";
             maxdisTextBox.Size = new Size(100, 23);
             maxdisTextBox.TabIndex = 10;
             maxdisTextBox.KeyPress += maxdisTextBox_KeyPress;
-            // 
-            // zTextBox
-            // 
-            zTextBox.Location = new Point(170, 151);
-            zTextBox.Name = "zTextBox";
-            zTextBox.Size = new Size(100, 23);
-            zTextBox.TabIndex = 11;
-            zTextBox.KeyPress += zTextBox_KeyPress;
-            // 
-            // yTextBox
-            // 
-            yTextBox.Location = new Point(170, 122);
-            yTextBox.Name = "yTextBox";
-            yTextBox.Size = new Size(100, 23);
-            yTextBox.TabIndex = 12;
-            yTextBox.KeyPress += yTextBox_KeyPress;
-            // 
-            // xTextBox
-            // 
-            xTextBox.Location = new Point(170, 93);
-            xTextBox.Name = "xTextBox";
-            xTextBox.Size = new Size(100, 23);
-            xTextBox.TabIndex = 13;
-            xTextBox.KeyPress += xTextBox_KeyPress;
             // 
             // timeLimitTextBox
             // 
@@ -171,7 +143,7 @@
             // amountLabel
             // 
             amountLabel.AutoSize = true;
-            amountLabel.Location = new Point(12, 241);
+            amountLabel.Location = new Point(12, 184);
             amountLabel.Name = "amountLabel";
             amountLabel.Size = new Size(46, 15);
             amountLabel.TabIndex = 21;
@@ -180,20 +152,11 @@
             // maxDistLabel
             // 
             maxDistLabel.AutoSize = true;
-            maxDistLabel.Location = new Point(12, 183);
+            maxDistLabel.Location = new Point(12, 126);
             maxDistLabel.Name = "maxDistLabel";
             maxDistLabel.Size = new Size(152, 15);
             maxDistLabel.TabIndex = 22;
             maxDistLabel.Text = "Макс. дистацния убийства";
-            // 
-            // yLabel
-            // 
-            yLabel.AutoSize = true;
-            yLabel.Location = new Point(12, 125);
-            yLabel.Name = "yLabel";
-            yLabel.Size = new Size(82, 15);
-            yLabel.TabIndex = 23;
-            yLabel.Text = "Координата Y";
             // 
             // timeLimitLabel
             // 
@@ -225,29 +188,11 @@
             // minDistLabel
             // 
             minDistLabel.AutoSize = true;
-            minDistLabel.Location = new Point(12, 212);
+            minDistLabel.Location = new Point(12, 155);
             minDistLabel.Name = "minDistLabel";
             minDistLabel.Size = new Size(148, 15);
             minDistLabel.TabIndex = 28;
             minDistLabel.Text = "Мин. дистацния убийства";
-            // 
-            // zLabel
-            // 
-            zLabel.AutoSize = true;
-            zLabel.Location = new Point(12, 154);
-            zLabel.Name = "zLabel";
-            zLabel.Size = new Size(82, 15);
-            zLabel.TabIndex = 29;
-            zLabel.Text = "Координата Z";
-            // 
-            // xlabel
-            // 
-            xlabel.AutoSize = true;
-            xlabel.Location = new Point(12, 96);
-            xlabel.Name = "xlabel";
-            xlabel.Size = new Size(82, 15);
-            xlabel.TabIndex = 30;
-            xlabel.Text = "Координата X";
             // 
             // textLabel
             // 
@@ -269,7 +214,7 @@
             // selfkill
             // 
             selfkill.AutoSize = true;
-            selfkill.Location = new Point(13, 300);
+            selfkill.Location = new Point(13, 243);
             selfkill.Name = "selfkill";
             selfkill.Size = new Size(328, 19);
             selfkill.TabIndex = 33;
@@ -338,7 +283,7 @@
             // 
             // addTarget
             // 
-            addTarget.Location = new Point(20, 353);
+            addTarget.Location = new Point(20, 296);
             addTarget.Name = "addTarget";
             addTarget.Size = new Size(75, 23);
             addTarget.TabIndex = 41;
@@ -348,7 +293,7 @@
             // 
             // cancel
             // 
-            cancel.Location = new Point(185, 350);
+            cancel.Location = new Point(185, 293);
             cancel.Name = "cancel";
             cancel.Size = new Size(75, 23);
             cancel.TabIndex = 42;
@@ -385,7 +330,7 @@
             // filenameLabel
             // 
             filenameLabel.AutoSize = true;
-            filenameLabel.Location = new Point(12, 270);
+            filenameLabel.Location = new Point(12, 213);
             filenameLabel.Name = "filenameLabel";
             filenameLabel.Size = new Size(97, 15);
             filenameLabel.TabIndex = 47;
@@ -393,7 +338,7 @@
             // 
             // filenameTextbox
             // 
-            filenameTextbox.Location = new Point(170, 267);
+            filenameTextbox.Location = new Point(170, 210);
             filenameTextbox.Name = "filenameTextbox";
             filenameTextbox.Size = new Size(100, 23);
             filenameTextbox.TabIndex = 46;
@@ -401,18 +346,36 @@
             // countAI
             // 
             countAI.AutoSize = true;
-            countAI.Location = new Point(12, 325);
+            countAI.Location = new Point(12, 268);
             countAI.Name = "countAI";
             countAI.Size = new Size(145, 19);
             countAI.TabIndex = 48;
             countAI.Text = "Засчитывать AI ботов";
             countAI.UseVisualStyleBackColor = true;
             // 
+            // xlabel
+            // 
+            xlabel.AutoSize = true;
+            xlabel.Location = new Point(12, 98);
+            xlabel.Name = "xlabel";
+            xlabel.Size = new Size(115, 15);
+            xlabel.TabIndex = 50;
+            xlabel.Text = "Координаты из <..>";
+            // 
+            // coordsTextBox
+            // 
+            coordsTextBox.Location = new Point(170, 90);
+            coordsTextBox.Name = "coordsTextBox";
+            coordsTextBox.Size = new Size(176, 23);
+            coordsTextBox.TabIndex = 49;
+            // 
             // TargetPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(720, 541);
+            Controls.Add(xlabel);
+            Controls.Add(coordsTextBox);
             Controls.Add(countAI);
             Controls.Add(filenameLabel);
             Controls.Add(filenameTextbox);
@@ -431,13 +394,10 @@
             Controls.Add(selfkill);
             Controls.Add(classnamesTextBox);
             Controls.Add(textLabel);
-            Controls.Add(xlabel);
-            Controls.Add(zLabel);
             Controls.Add(minDistLabel);
             Controls.Add(classnamesLabel);
             Controls.Add(excludedLabel);
             Controls.Add(timeLimitLabel);
-            Controls.Add(yLabel);
             Controls.Add(maxDistLabel);
             Controls.Add(amountLabel);
             Controls.Add(allowedTargetFactionsLabel);
@@ -445,9 +405,6 @@
             Controls.Add(idLabel);
             Controls.Add(textTextBox);
             Controls.Add(timeLimitTextBox);
-            Controls.Add(xTextBox);
-            Controls.Add(yTextBox);
-            Controls.Add(zTextBox);
             Controls.Add(maxdisTextBox);
             Controls.Add(minDIstTextBox);
             Controls.Add(amountTextBox);
@@ -462,18 +419,12 @@
         #endregion
 
         private TextBox idTextBox;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
         private TextBox textBox5;
         private TextBox textBox7;
         private TextBox textBox8;
         private TextBox amountTextBox;
         private TextBox minDIstTextBox;
         private TextBox maxdisTextBox;
-        private TextBox zTextBox;
-        private TextBox yTextBox;
-        private TextBox xTextBox;
         private TextBox timeLimitTextBox;
         private TextBox textTextBox;
         private Label idLabel;
@@ -481,13 +432,10 @@
         private Label allowedTargetFactionsLabel;
         private Label amountLabel;
         private Label maxDistLabel;
-        private Label yLabel;
         private Label timeLimitLabel;
         private Label excludedLabel;
         private Label classnamesLabel;
         private Label minDistLabel;
-        private Label zLabel;
-        private Label xlabel;
         private Label textLabel;
         private RichTextBox classnamesTextBox;
         private CheckBox selfkill;
@@ -506,5 +454,7 @@
         private Label filenameLabel;
         private TextBox filenameTextbox;
         private CheckBox countAI;
+        private Label xlabel;
+        private TextBox coordsTextBox;
     }
 }

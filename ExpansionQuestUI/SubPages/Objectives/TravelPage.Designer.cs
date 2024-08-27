@@ -31,16 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TravelPage));
             textLabel = new Label();
             xlabel = new Label();
-            zLabel = new Label();
             timeLimitLabel = new Label();
-            yLabel = new Label();
             maxDistLabel = new Label();
             idLabel = new Label();
             textTextBox = new TextBox();
             timeLimitTextBox = new TextBox();
-            xTextBox = new TextBox();
-            yTextBox = new TextBox();
-            zTextBox = new TextBox();
+            coordsTextBox = new TextBox();
             radiusTextBox = new TextBox();
             idTextBox = new TextBox();
             label1 = new Label();
@@ -69,18 +65,9 @@
             xlabel.AutoSize = true;
             xlabel.Location = new Point(17, 100);
             xlabel.Name = "xlabel";
-            xlabel.Size = new Size(82, 15);
+            xlabel.Size = new Size(115, 15);
             xlabel.TabIndex = 44;
-            xlabel.Text = "Координата X";
-            // 
-            // zLabel
-            // 
-            zLabel.AutoSize = true;
-            zLabel.Location = new Point(17, 158);
-            zLabel.Name = "zLabel";
-            zLabel.Size = new Size(82, 15);
-            zLabel.TabIndex = 43;
-            zLabel.Text = "Координата Z";
+            xlabel.Text = "Координаты из <..>";
             // 
             // timeLimitLabel
             // 
@@ -91,19 +78,10 @@
             timeLimitLabel.TabIndex = 42;
             timeLimitLabel.Text = "Лимит по времени";
             // 
-            // yLabel
-            // 
-            yLabel.AutoSize = true;
-            yLabel.Location = new Point(17, 129);
-            yLabel.Name = "yLabel";
-            yLabel.Size = new Size(82, 15);
-            yLabel.TabIndex = 41;
-            yLabel.Text = "Координата Y";
-            // 
             // maxDistLabel
             // 
             maxDistLabel.AutoSize = true;
-            maxDistLabel.Location = new Point(17, 187);
+            maxDistLabel.Location = new Point(17, 130);
             maxDistLabel.Name = "maxDistLabel";
             maxDistLabel.Size = new Size(93, 15);
             maxDistLabel.TabIndex = 40;
@@ -120,45 +98,29 @@
             // 
             // textTextBox
             // 
-            textTextBox.Location = new Point(175, 39);
+            textTextBox.Location = new Point(134, 39);
             textTextBox.Name = "textTextBox";
-            textTextBox.Size = new Size(176, 23);
+            textTextBox.Size = new Size(214, 23);
             textTextBox.TabIndex = 38;
             // 
             // timeLimitTextBox
             // 
-            timeLimitTextBox.Location = new Point(175, 68);
+            timeLimitTextBox.Location = new Point(134, 68);
             timeLimitTextBox.Name = "timeLimitTextBox";
             timeLimitTextBox.Size = new Size(51, 23);
             timeLimitTextBox.TabIndex = 37;
             // 
-            // xTextBox
+            // coordsTextBox
             // 
-            xTextBox.Location = new Point(175, 97);
-            xTextBox.Name = "xTextBox";
-            xTextBox.Size = new Size(100, 23);
-            xTextBox.TabIndex = 36;
-            xTextBox.KeyPress += xTextBox_KeyPress;
-            // 
-            // yTextBox
-            // 
-            yTextBox.Location = new Point(175, 126);
-            yTextBox.Name = "yTextBox";
-            yTextBox.Size = new Size(100, 23);
-            yTextBox.TabIndex = 35;
-            yTextBox.KeyPress += yTextBox_KeyPress;
-            // 
-            // zTextBox
-            // 
-            zTextBox.Location = new Point(175, 155);
-            zTextBox.Name = "zTextBox";
-            zTextBox.Size = new Size(100, 23);
-            zTextBox.TabIndex = 34;
-            zTextBox.KeyPress += zTextBox_KeyPress;
+            coordsTextBox.Location = new Point(134, 97);
+            coordsTextBox.Name = "coordsTextBox";
+            coordsTextBox.Size = new Size(214, 23);
+            coordsTextBox.TabIndex = 36;
+            coordsTextBox.KeyPress += xTextBox_KeyPress;
             // 
             // radiusTextBox
             // 
-            radiusTextBox.Location = new Point(175, 184);
+            radiusTextBox.Location = new Point(134, 127);
             radiusTextBox.Name = "radiusTextBox";
             radiusTextBox.Size = new Size(100, 23);
             radiusTextBox.TabIndex = 33;
@@ -166,7 +128,7 @@
             // 
             // idTextBox
             // 
-            idTextBox.Location = new Point(175, 13);
+            idTextBox.Location = new Point(134, 13);
             idTextBox.Name = "idTextBox";
             idTextBox.Size = new Size(51, 23);
             idTextBox.TabIndex = 32;
@@ -175,7 +137,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 216);
+            label1.Location = new Point(17, 159);
             label1.Name = "label1";
             label1.Size = new Size(109, 15);
             label1.TabIndex = 47;
@@ -183,7 +145,7 @@
             // 
             // markerNameTextBox
             // 
-            markerNameTextBox.Location = new Point(175, 213);
+            markerNameTextBox.Location = new Point(134, 156);
             markerNameTextBox.Name = "markerNameTextBox";
             markerNameTextBox.Size = new Size(100, 23);
             markerNameTextBox.TabIndex = 46;
@@ -191,7 +153,7 @@
             // onExit
             // 
             onExit.AutoSize = true;
-            onExit.Location = new Point(19, 330);
+            onExit.Location = new Point(19, 273);
             onExit.Name = "onExit";
             onExit.Size = new Size(228, 19);
             onExit.TabIndex = 48;
@@ -201,7 +163,7 @@
             // onEnter
             // 
             onEnter.AutoSize = true;
-            onEnter.Location = new Point(19, 305);
+            onEnter.Location = new Point(19, 248);
             onEnter.Name = "onEnter";
             onEnter.Size = new Size(212, 19);
             onEnter.TabIndex = 49;
@@ -211,7 +173,7 @@
             // showDistance
             // 
             showDistance.AutoSize = true;
-            showDistance.Location = new Point(19, 280);
+            showDistance.Location = new Point(19, 223);
             showDistance.Name = "showDistance";
             showDistance.Size = new Size(203, 19);
             showDistance.TabIndex = 50;
@@ -229,7 +191,7 @@
             // 
             // cancel
             // 
-            cancel.Location = new Point(220, 355);
+            cancel.Location = new Point(220, 298);
             cancel.Name = "cancel";
             cancel.Size = new Size(75, 23);
             cancel.TabIndex = 53;
@@ -239,7 +201,7 @@
             // 
             // addTarget
             // 
-            addTarget.Location = new Point(55, 358);
+            addTarget.Location = new Point(55, 301);
             addTarget.Name = "addTarget";
             addTarget.Size = new Size(75, 23);
             addTarget.TabIndex = 52;
@@ -250,7 +212,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 245);
+            label2.Location = new Point(17, 188);
             label2.Name = "label2";
             label2.Size = new Size(97, 15);
             label2.TabIndex = 55;
@@ -258,16 +220,16 @@
             // 
             // filenameTextBox
             // 
-            filenameTextBox.Location = new Point(175, 242);
+            filenameTextBox.Location = new Point(134, 185);
             filenameTextBox.Name = "filenameTextBox";
-            filenameTextBox.Size = new Size(173, 23);
+            filenameTextBox.Size = new Size(214, 23);
             filenameTextBox.TabIndex = 54;
             // 
             // TravelPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(360, 418);
+            ClientSize = new Size(360, 337);
             Controls.Add(label2);
             Controls.Add(filenameTextBox);
             Controls.Add(cancel);
@@ -280,16 +242,12 @@
             Controls.Add(markerNameTextBox);
             Controls.Add(textLabel);
             Controls.Add(xlabel);
-            Controls.Add(zLabel);
             Controls.Add(timeLimitLabel);
-            Controls.Add(yLabel);
             Controls.Add(maxDistLabel);
             Controls.Add(idLabel);
             Controls.Add(textTextBox);
             Controls.Add(timeLimitTextBox);
-            Controls.Add(xTextBox);
-            Controls.Add(yTextBox);
-            Controls.Add(zTextBox);
+            Controls.Add(coordsTextBox);
             Controls.Add(radiusTextBox);
             Controls.Add(idTextBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -310,9 +268,7 @@
         private Label idLabel;
         private TextBox textTextBox;
         private TextBox timeLimitTextBox;
-        private TextBox xTextBox;
-        private TextBox yTextBox;
-        private TextBox zTextBox;
+        private TextBox coordsTextBox;
         private TextBox radiusTextBox;
         private TextBox idTextBox;
         private Label label1;
