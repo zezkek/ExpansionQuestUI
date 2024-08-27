@@ -75,9 +75,9 @@ namespace ExpansionQuestUI.SubPages.Objectives
             }
 
             if (string.IsNullOrEmpty(markerNameTextBox.Text))
-                timeLimitTextBox.Text = "";
+                markerNameTextBox.Text = "";
 
-            if (onEnter.Checked ^ onExit.Checked)
+            if (!(onEnter.Checked ^ onExit.Checked))
             {
                 MessageBox.Show("Необходимо выбрать когда срабатывает триггер задачи(либо на входе, либо на выходе)");
                 return;
