@@ -64,6 +64,13 @@
             Variants = new DataGridViewTextBoxColumn();
             filenameLabel = new Label();
             filenameTextbox = new TextBox();
+            addLoot = new Button();
+            removeLoot = new Button();
+            label7 = new Label();
+            xlabel = new Label();
+            coordsTextBox = new TextBox();
+            removeCoords = new Button();
+            addCoords = new Button();
             ((System.ComponentModel.ISupportInitialize)coordinatesData).BeginInit();
             ((System.ComponentModel.ISupportInitialize)treasureData).BeginInit();
             SuspendLayout();
@@ -120,7 +127,7 @@
             // showDistance
             // 
             showDistance.AutoSize = true;
-            showDistance.Location = new Point(13, 214);
+            showDistance.Location = new Point(13, 212);
             showDistance.Name = "showDistance";
             showDistance.Size = new Size(157, 19);
             showDistance.TabIndex = 62;
@@ -148,7 +155,7 @@
             // digIn
             // 
             digIn.AutoSize = true;
-            digIn.Location = new Point(13, 240);
+            digIn.Location = new Point(13, 238);
             digIn.Name = "digIn";
             digIn.Size = new Size(137, 19);
             digIn.TabIndex = 65;
@@ -193,7 +200,7 @@
             // 
             coordinatesData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             coordinatesData.Columns.AddRange(new DataGridViewColumn[] { x, y, z });
-            coordinatesData.Location = new Point(370, 97);
+            coordinatesData.Location = new Point(368, 152);
             coordinatesData.Name = "coordinatesData";
             coordinatesData.Size = new Size(343, 150);
             coordinatesData.TabIndex = 73;
@@ -347,11 +354,83 @@
             filenameTextbox.Size = new Size(100, 23);
             filenameTextbox.TabIndex = 82;
             // 
+            // addLoot
+            // 
+            addLoot.Location = new Point(169, 276);
+            addLoot.Name = "addLoot";
+            addLoot.Size = new Size(75, 23);
+            addLoot.TabIndex = 84;
+            addLoot.Text = "Добавить";
+            addLoot.UseVisualStyleBackColor = true;
+            addLoot.Click += addLoot_Click;
+            // 
+            // removeLoot
+            // 
+            removeLoot.Location = new Point(270, 272);
+            removeLoot.Name = "removeLoot";
+            removeLoot.Size = new Size(75, 23);
+            removeLoot.TabIndex = 85;
+            removeLoot.Text = "Удалить";
+            removeLoot.UseVisualStyleBackColor = true;
+            removeLoot.Click += removeLoot_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(11, 280);
+            label7.Name = "label7";
+            label7.Size = new Size(126, 15);
+            label7.TabIndex = 86;
+            label7.Text = "Содержимое тайника";
+            // 
+            // xlabel
+            // 
+            xlabel.AutoSize = true;
+            xlabel.Location = new Point(370, 100);
+            xlabel.Name = "xlabel";
+            xlabel.Size = new Size(115, 15);
+            xlabel.TabIndex = 88;
+            xlabel.Text = "Координаты из <..>";
+            // 
+            // coordsTextBox
+            // 
+            coordsTextBox.Location = new Point(497, 97);
+            coordsTextBox.Name = "coordsTextBox";
+            coordsTextBox.Size = new Size(214, 23);
+            coordsTextBox.TabIndex = 87;
+            // 
+            // removeCoords
+            // 
+            removeCoords.Location = new Point(451, 122);
+            removeCoords.Name = "removeCoords";
+            removeCoords.Size = new Size(75, 23);
+            removeCoords.TabIndex = 90;
+            removeCoords.Text = "Удалить";
+            removeCoords.UseVisualStyleBackColor = true;
+            removeCoords.Click += removeCoords_Click;
+            // 
+            // addCoords
+            // 
+            addCoords.Location = new Point(370, 122);
+            addCoords.Name = "addCoords";
+            addCoords.Size = new Size(75, 23);
+            addCoords.TabIndex = 89;
+            addCoords.Text = "Добавить";
+            addCoords.UseVisualStyleBackColor = true;
+            addCoords.Click += addCoords_Click;
+            // 
             // TreasurePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(724, 767);
+            Controls.Add(removeCoords);
+            Controls.Add(addCoords);
+            Controls.Add(xlabel);
+            Controls.Add(coordsTextBox);
+            Controls.Add(label7);
+            Controls.Add(removeLoot);
+            Controls.Add(addLoot);
             Controls.Add(filenameLabel);
             Controls.Add(filenameTextbox);
             Controls.Add(treasureData);
@@ -423,5 +502,12 @@
         private DataGridViewTextBoxColumn Variants;
         private Label filenameLabel;
         private TextBox filenameTextbox;
+        private Button addLoot;
+        private Button removeLoot;
+        private Label label7;
+        private Label xlabel;
+        private TextBox coordsTextBox;
+        private Button removeCoords;
+        private Button addCoords;
     }
 }

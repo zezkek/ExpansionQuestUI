@@ -23,6 +23,13 @@ namespace ExpansionQuestUI.SubPages.Objectives
             maxDidstanceTextBox.Text = "20.0";
         }
 
+        public void AddLoot(Loot loot)
+        {
+            var attachments = loot.Attachments.Any() ? string.Join(",", loot.Attachments) : string.Empty;
+            var variants = loot.Variants.Any() ? string.Join(",", loot.Variants) : string.Empty;
+            treasureData.Rows.Add(loot.Name, loot.Chance.ToString(), attachments, loot.QuantityPercent.ToString(), loot.Max.ToString(), loot.Min.ToString(), variants);
+        }
+
         private void cancel_Click(object sender, EventArgs e)
         {
             if (MainPage != null)
@@ -189,6 +196,43 @@ namespace ExpansionQuestUI.SubPages.Objectives
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void removeLoot_Click(object sender, EventArgs e)
+        {
+            if (treasureData.Rows.Count <= 1)
+                return;
+
+            foreach (DataGridViewRow row in treasureData.SelectedRows)
+                if (!row.IsNewRow)
+                    treasureData.Rows.Remove(row);
+        }
+
+        private void removeCoords_Click(object sender, EventArgs e)
+        {
+            if (coordinatesData.Rows.Count <= 1)
+                return;
+
+            foreach (DataGridViewRow row in coordinatesData.SelectedRows)
+                if (!row.IsNewRow)
+                    coordinatesData.Rows.Remove(row);
+        }
+
+        private void addLoot_Click(object sender, EventArgs e)
+        {
+            Form loot = new ItemPages.Loot();
+            Enabled = false;
+            loot.Show();
+        }
+
+        private void addCoords_Click(object sender, EventArgs e)
+        {
+            var strCoords = coordsTextBox.Text.Replace(" ", string.Empty);
+            var strCoordsList = strCoords.Split(',').ToList();
+            for (int i = 0; i < 3; i++)
+                strCoordsList[i] = strCoordsList[i].Replace(".", ",");
+
+            coordinatesData.Rows.Add(strCoordsList[0], strCoordsList[1], strCoordsList[2]);
         }
     }
 }

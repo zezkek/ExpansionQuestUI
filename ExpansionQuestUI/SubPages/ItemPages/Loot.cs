@@ -14,7 +14,6 @@ namespace ExpansionQuestUI.SubPages.ItemPages
             InitFields();
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-
         }
 
         private void InitFields()
@@ -51,15 +50,23 @@ namespace ExpansionQuestUI.SubPages.ItemPages
             Models.Items.Loot loot;
             try
             {
+                var attachments = rewardAttachmentsTextBox.Text?.Split(',')?.ToList();
+                if (string.IsNullOrEmpty(attachments[0]))
+                    attachments = new List<string>();
+
+                var variants = variantsTextBox.Text.Split(',').ToList();
+                if (string.IsNullOrEmpty(variants[0]))
+                    variants = new List<string>();
+
                 loot = new Models.Items.Loot()
                 {
                     Name = rewardClassnameTextBox.Text,
-                    Chance = double.Parse(chanceTextBox.Text),
-                    Attachments = rewardAttachmentsTextBox.Text.Split(",").ToList(),
+                    Chance = double.Parse(chanceTextBox.Text.Replace(".", ",")),
+                    Attachments = attachments,
                     QuantityPercent = int.Parse(quantityPercentTextBox.Text),
                     Max = int.Parse(maxTextBox.Text),
                     Min = int.Parse(minTextBox.Text),
-                    Variants = variantsTextBox.Text.Split(",").ToList(),
+                    Variants = variants,
                 };
             }
             catch (Exception ex)
@@ -68,13 +75,14 @@ namespace ExpansionQuestUI.SubPages.ItemPages
                 return;
             }
 
-
+            treasurePage.AddLoot(loot);
             InitFields();
         }
 
         private void closeReward_Click(object sender, EventArgs e)
         {
             treasurePage.Enabled = true;
+            treasurePage.Select();
             Close();
         }
     }
