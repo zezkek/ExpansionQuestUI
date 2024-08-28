@@ -7,10 +7,10 @@ namespace ExpansionQuestUI.SubPages
 {
     public partial class FilenamePage : Form
     {
-        private readonly MainPage mainPage;
+        private readonly MainPage MainPage;
         public FilenamePage()
         {
-            mainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
             InitializeComponent();
             ControlBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -19,8 +19,9 @@ namespace ExpansionQuestUI.SubPages
 
         private void cancelFileCreateButton_Click(object sender, EventArgs e)
         {
-            mainPage.DisableBlock();
-            mainPage.Enabled = true;
+            MainPage.DisableBlock();
+            MainPage.Enabled = true;
+            MainPage.Select();
             Close();
         }
 
@@ -60,12 +61,13 @@ namespace ExpansionQuestUI.SubPages
                 return;
             }
 
-            if (mainPage != null)
+            if (MainPage != null)
             {
-                mainPage.SetCurrentFileName($"Quests/{filenameTextbox.Text}.json");
-                mainPage.InitQuest(new Quest());
-                mainPage.DisableBlock();
-                mainPage.Enabled = true;
+                MainPage.SetCurrentFileName($"Quests/{filenameTextbox.Text}.json");
+                MainPage.InitQuest(new Quest());
+                MainPage.DisableBlock();
+                MainPage.Enabled = true;
+                MainPage.Select();
             }
             Close();
         }

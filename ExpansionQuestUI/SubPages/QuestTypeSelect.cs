@@ -17,12 +17,16 @@ namespace ExpansionQuestUI.SubPages
         private void close_Click(object sender, EventArgs e)
         {
             if (MainPage != null)
+            {
                 MainPage.Enabled = true;
+                MainPage.Select();
+            }
             Close();
         }
 
         private void selectTraget_Click(object sender, EventArgs e)
         {
+            MainPage.TopMost = false;
             Form form = new TargetPage();
             form.Show();
             Close();
@@ -30,6 +34,7 @@ namespace ExpansionQuestUI.SubPages
 
         private void selectTravel_Click(object sender, EventArgs e)
         {
+            MainPage.TopMost = false;
             Form form = new TravelPage();
             form.Show();
             Close();
@@ -37,6 +42,7 @@ namespace ExpansionQuestUI.SubPages
 
         private void selectCollect_Click(object sender, EventArgs e)
         {
+            MainPage.TopMost = false;
             Form form = new CollectPage();
             form.Show();
             Close();
@@ -44,6 +50,7 @@ namespace ExpansionQuestUI.SubPages
 
         private void selectDelivery_Click(object sender, EventArgs e)
         {
+            MainPage.TopMost = false;
             Form form = new DeliveryPage();
             form.Show();
             Close();
@@ -51,6 +58,7 @@ namespace ExpansionQuestUI.SubPages
 
         private void selectTreasure_Click(object sender, EventArgs e)
         {
+            MainPage.TopMost = false;
             Form form = new TreasurePage();
             form.Show();
             Close();
@@ -60,6 +68,7 @@ namespace ExpansionQuestUI.SubPages
         {
             MainPage.AddObjective(int.Parse(idTextBox.Text), int.Parse(objectiveTypeTextBox.Text));
             MainPage.Enabled = true;
+            MainPage.Select();
             Close();
         }
     }

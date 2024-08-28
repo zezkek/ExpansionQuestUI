@@ -25,7 +25,10 @@ namespace ExpansionQuestUI.SubPages.Objectives
         private void cancel_Click(object sender, EventArgs e)
         {
             if (MainPage != null)
+            {
                 MainPage.Enabled = true;
+                MainPage.Select();
+            }
             Close();
         }
 
@@ -129,7 +132,8 @@ namespace ExpansionQuestUI.SubPages.Objectives
             }
 
             MainPage.AddObjective(travel.ID, travel.ObjectiveType);
-            MainPage.Enabled = true;
+            MainPage.Enabled = true; 
+            MainPage.Select();
             Close();
         }
 
