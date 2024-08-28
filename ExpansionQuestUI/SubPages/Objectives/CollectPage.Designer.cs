@@ -36,10 +36,6 @@
             timeLimitTextBox = new TextBox();
             idTextBox = new TextBox();
             itemsData = new DataGridView();
-            Amount = new DataGridViewTextBoxColumn();
-            ClassName = new DataGridViewTextBoxColumn();
-            QuantityPercent = new DataGridViewTextBoxColumn();
-            MinQuantityPercent = new DataGridViewTextBoxColumn();
             deleteItem = new Button();
             addItem = new Button();
             questItemsLabel = new Label();
@@ -50,6 +46,10 @@
             addTarget = new Button();
             filenameLabel = new Label();
             filenameTextbox = new TextBox();
+            Amount = new DataGridViewTextBoxColumn();
+            ClassName = new DataGridViewTextBoxColumn();
+            QuantityPercent = new DataGridViewTextBoxColumn();
+            MinQuantityPercent = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)itemsData).BeginInit();
             SuspendLayout();
             // 
@@ -108,41 +108,8 @@
             itemsData.Columns.AddRange(new DataGridViewColumn[] { Amount, ClassName, QuantityPercent, MinQuantityPercent });
             itemsData.Location = new Point(10, 151);
             itemsData.Name = "itemsData";
-            itemsData.Size = new Size(576, 212);
+            itemsData.Size = new Size(574, 212);
             itemsData.TabIndex = 38;
-            // 
-            // Amount
-            // 
-            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            Amount.HeaderText = "Amount";
-            Amount.Name = "Amount";
-            Amount.ReadOnly = true;
-            Amount.Width = 76;
-            // 
-            // ClassName
-            // 
-            ClassName.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            ClassName.HeaderText = "ClassName";
-            ClassName.MinimumWidth = 150;
-            ClassName.Name = "ClassName";
-            ClassName.ReadOnly = true;
-            ClassName.Width = 200;
-            // 
-            // QuantityPercent
-            // 
-            QuantityPercent.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            QuantityPercent.HeaderText = "QuantityPercent";
-            QuantityPercent.Name = "QuantityPercent";
-            QuantityPercent.ReadOnly = true;
-            QuantityPercent.Width = 118;
-            // 
-            // MinQuantityPercent
-            // 
-            MinQuantityPercent.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            MinQuantityPercent.HeaderText = "MinQuantityPercent";
-            MinQuantityPercent.Name = "MinQuantityPercent";
-            MinQuantityPercent.ReadOnly = true;
-            MinQuantityPercent.Width = 139;
             // 
             // deleteItem
             // 
@@ -239,6 +206,39 @@
             filenameTextbox.Size = new Size(100, 23);
             filenameTextbox.TabIndex = 48;
             // 
+            // Amount
+            // 
+            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Amount.HeaderText = "Кол-во";
+            Amount.Name = "Amount";
+            Amount.ReadOnly = true;
+            Amount.Width = 71;
+            // 
+            // ClassName
+            // 
+            ClassName.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            ClassName.HeaderText = "ClassName";
+            ClassName.MinimumWidth = 150;
+            ClassName.Name = "ClassName";
+            ClassName.ReadOnly = true;
+            ClassName.Width = 200;
+            // 
+            // QuantityPercent
+            // 
+            QuantityPercent.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            QuantityPercent.HeaderText = "QuantityPercent";
+            QuantityPercent.Name = "QuantityPercent";
+            QuantityPercent.ReadOnly = true;
+            QuantityPercent.Width = 118;
+            // 
+            // MinQuantityPercent
+            // 
+            MinQuantityPercent.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            MinQuantityPercent.HeaderText = "MinQuantityPercent";
+            MinQuantityPercent.Name = "MinQuantityPercent";
+            MinQuantityPercent.ReadOnly = true;
+            MinQuantityPercent.Width = 139;
+            // 
             // CollectPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -278,10 +278,6 @@
         private TextBox timeLimitTextBox;
         private TextBox idTextBox;
         private DataGridView itemsData;
-        private DataGridViewTextBoxColumn Amount;
-        private DataGridViewTextBoxColumn ClassName;
-        private DataGridViewTextBoxColumn QuantityPercent;
-        private DataGridViewTextBoxColumn MinQuantityPercent;
         private Button deleteItem;
         private Button addItem;
         private Label questItemsLabel;
@@ -292,5 +288,9 @@
         private Button addTarget;
         private Label filenameLabel;
         private TextBox filenameTextbox;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn ClassName;
+        private DataGridViewTextBoxColumn QuantityPercent;
+        private DataGridViewTextBoxColumn MinQuantityPercent;
     }
 }

@@ -1,7 +1,10 @@
 using ExpansionQuestUI.Models;
 using ExpansionQuestUI.Models.Items;
+using ExpansionQuestUI.Models.Objectives;
 using ExpansionQuestUI.SubPages;
+using ExpansionQuestUI.SubPages.Objectives;
 using System.Data;
+using System.Diagnostics;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -20,12 +23,11 @@ namespace ExpansionQuestUI
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            openQuest.FileName = "Роуг чурка";
-            openQuest.Filter = "Файлы квестов (*.json)|*.json";
-            openQuest.DefaultExt = "json";
-            openQuest.AddExtension = true;
-            openQuest.InitialDirectory = Directory.GetCurrentDirectory();
-            openQuest.RestoreDirectory = false;
+            openFileDialog.FileName = "Роуг чурка";
+            openFileDialog.Filter = "Файлы квестов (*.json)|*.json";
+            openFileDialog.DefaultExt = "json";
+            openFileDialog.AddExtension = true;
+            openFileDialog.RestoreDirectory = false;
         }
 
         public void SetCurrentFileName(string fileName)
@@ -169,6 +171,10 @@ namespace ExpansionQuestUI
                     });
                 }
 
+            List<int> prequestId = new();
+            if (!string.IsNullOrEmpty(prevQuestTextBox.Text))
+                prequestId = prevQuestTextBox.Text.Split(",").Select(x => int.Parse(x)).ToList();
+
             try
             {
                 Quest quest = new()
@@ -199,7 +205,7 @@ namespace ExpansionQuestUI
                     QuestColor = int.Parse(colorIdTextBox.Text),
                     ReputationReward = int.Parse(repQuestTextBox.Text),
                     ReputationRequirement = int.Parse(repNeedQuestTextBox.Text),
-                    PreQuestIDs = prevQuestTextBox.Text.Split(",").Select(x => int.Parse(x)).ToList(),
+                    PreQuestIDs = prequestId,
                     PlayerNeedQuestItems = needQuestItems.Checked ? 1 : 0,
                     DeleteQuestItems = deleteQuestItems.Checked ? 1 : 0,
                     SequentialObjectives = seqQuest.Checked ? 1 : 0,
@@ -395,12 +401,12 @@ namespace ExpansionQuestUI
 
         private void openFile_Click(object sender, EventArgs e)
         {
-            if (openQuest.ShowDialog(this) == DialogResult.Cancel)
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
             try
             {
-                Stream stream = openQuest.OpenFile();
+                Stream stream = openFileDialog.OpenFile();
                 using StreamReader reader = new(stream);
                 string? str = reader.ReadToEnd();
                 var quest = JsonSerializer.Deserialize<Quest>(str);
@@ -411,7 +417,7 @@ namespace ExpansionQuestUI
 
                 }
 
-                SetCurrentFileName($"{openQuest.FileName}");
+                SetCurrentFileName($"{openFileDialog.FileName}");
                 InitQuest(quest);
                 DisableBlock();
             }
@@ -509,6 +515,207 @@ namespace ExpansionQuestUI
             foreach (DataGridViewRow row in objectivesData.SelectedRows)
                 if (!row.IsNewRow)
                     objectivesData.Rows.Remove(row);
+        }
+
+        private void openQuestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\Quests"))
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Quests";
+            else
+                Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new(stream);
+                string? str = reader.ReadToEnd();
+                var quest = JsonSerializer.Deserialize<Quest>(str);
+                if (quest == null)
+                {
+                    MessageBox.Show("Ошибка при чтении данных из файла");
+                    return;
+
+                }
+
+                SetCurrentFileName($"{openFileDialog.FileName}");
+                InitQuest(quest);
+                DisableBlock();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void targetУстранениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.RestoreDirectory = false;
+            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\Objectives\\Target"))
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Objectives\\Target";
+            else
+                Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new(stream);
+                string? str = reader.ReadToEnd();
+                var target = JsonSerializer.Deserialize<Target>(str);
+                if (target == null)
+                {
+                    MessageBox.Show("Ошибка при чтении данных из файла");
+                    return;
+                }
+
+                Form form = new TargetPage(target, Path.GetFileNameWithoutExtension(openFileDialog.FileName));
+                Enabled = false;
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void travelДобратьсяДоТочкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.RestoreDirectory = false;
+            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\Objectives\\Travel"))
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Objectives\\Travel";
+            else
+                Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new(stream);
+                string? str = reader.ReadToEnd();
+                var travel = JsonSerializer.Deserialize<Travel>(str);
+                if (travel == null)
+                {
+                    MessageBox.Show("Ошибка при чтении данных из файла");
+                    return;
+
+                }
+
+                Form form = new TravelPage(travel, Path.GetFileNameWithoutExtension(openFileDialog.FileName));
+                Enabled = false;
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void collectСборToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.RestoreDirectory = false;
+            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\Objectives\\Collection"))
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Objectives\\Collection";
+            else
+                Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new(stream);
+                string? str = reader.ReadToEnd();
+                var collect = JsonSerializer.Deserialize<Collect>(str);
+                if (collect == null)
+                {
+                    MessageBox.Show("Ошибка при чтении данных из файла");
+                    return;
+                }
+
+                Form form = new CollectPage(collect, Path.GetFileNameWithoutExtension(openFileDialog.FileName));
+                Enabled = false;
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void deliveryДоставкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.RestoreDirectory = false;
+            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\Objectives\\Delivery"))
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Objectives\\Delivery";
+            else
+                Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new(stream);
+                string? str = reader.ReadToEnd();
+                var delivery = JsonSerializer.Deserialize<Delivery>(str);
+                if (delivery == null)
+                {
+                    MessageBox.Show("Ошибка при чтении данных из файла");
+                    return;
+
+                }
+
+                Form form = new DeliveryPage(delivery, Path.GetFileNameWithoutExtension(openFileDialog.FileName));
+                Enabled = false;
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void treasurehuntТайникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.RestoreDirectory = false;
+            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\Objectives\\TreasureHunt"))
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Objectives\\TreasureHunt";
+            else
+                Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new(stream);
+                string? str = reader.ReadToEnd();
+                var treasure = JsonSerializer.Deserialize<Treasure>(str);
+                if (treasure == null)
+                {
+                    MessageBox.Show("Ошибка при чтении данных из файла");
+                    return;
+
+                }
+
+                Form form = new TreasurePage(treasure, Path.GetFileNameWithoutExtension(openFileDialog.FileName));
+                Enabled = false;
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

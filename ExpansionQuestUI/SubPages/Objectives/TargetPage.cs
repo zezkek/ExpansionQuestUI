@@ -23,6 +23,31 @@ namespace ExpansionQuestUI.SubPages.Objectives
             amountTextBox.Text = "1";
         }
 
+        public TargetPage(Target target, string filename)
+        {
+            InitializeComponent();
+            ControlBox = false;
+            MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            idTextBox.Text = target.ID.ToString();
+            textTextBox.Text = target.ObjectiveText;
+            timeLimitTextBox.Text = target.TimeLimit.ToString();
+            coordsTextBox.Text = string.Join(",", target.Position);
+            maxdisTextBox.Text = target.MaxDistance.ToString();
+            minDIstTextBox.Text = target.MinDistance.ToString();
+            amountTextBox.Text = target.Amount.ToString();
+            countAI.Checked = target.CountAIPlayers != 0;
+            selfkill.Checked = target.CountSelfKill != 0;
+            classnamesTextBox.Text = string.Join(",", target.ExcludedClassNames);
+            allowedTargetFactionsTextBox.Text = string.Join(",", target.AllowedTargetFactions);
+            allowedDamageZonesTextBox.Text = string.Join(",", target.AllowedDamageZones);
+            classnamesTextBox.Text = string.Join(",", target.ClassNames);
+            allowedWeaponsTextBox.Text = string.Join(",", target.AllowedWeapons);
+            filenameTextbox.Text = filename;
+        }
+
         private void cancel_Click(object sender, EventArgs e)
         {
             if (MainPage != null)

@@ -23,7 +23,40 @@ namespace ExpansionQuestUI.SubPages.Objectives
             maxDidstanceTextBox.Text = "20.0";
         }
 
-        public void AddLoot(Loot loot)
+        public TreasurePage(Treasure treasure, string filename)
+        {
+            InitializeComponent();
+            ControlBox = false;
+            MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            idTextBox.Text = treasure.ID.ToString();
+            textTextBox.Text = treasure.ObjectiveText;
+            timeLimitTextBox.Text = treasure.TimeLimit.ToString();
+            contClassname.Text = treasure.ContainerName;
+            markerNameTextBox.Text = treasure.MarkerName;
+            markerVis.Text = treasure.MarkerVisibility.ToString();
+            filenameTextbox.Text = filename;
+            itemsAmount.Text = treasure.LootItemsAmount.ToString();
+            maxDidstanceTextBox.Text = treasure.MaxDistance.ToString();
+
+            showDistance.Checked = treasure.ShowDistance != 0;
+            digIn.Checked = treasure.DigInStash != 0;
+
+            foreach (var coord in treasure.Positions)
+                coordinatesData.Rows.Add(coord[0], coord[1], coord[2]);
+
+            foreach (var item in treasure.Loot)
+            {
+                var attachments = item.Attachments != null ? string.Join(",", item.Attachments) : string.Empty;
+                var variants = item.Variants != null ? string.Join(",", item.Variants) : string.Empty;
+
+                treasureData.Rows.Add(item.Name, item.Chance.ToString(), attachments, item.QuantityPercent.ToString(), item.Max.ToString(), item.Min.ToString(), variants);
+            }
+        }
+
+            public void AddLoot(Loot loot)
         {
             var attachments = loot.Attachments.Any() ? string.Join(",", loot.Attachments) : string.Empty;
             var variants = loot.Variants.Any() ? string.Join(",", loot.Variants) : string.Empty;
@@ -121,7 +154,7 @@ namespace ExpansionQuestUI.SubPages.Objectives
                     ID = int.Parse(idTextBox.Text),
                     ObjectiveText = textTextBox.Text,
                     TimeLimit = int.Parse(timeLimitTextBox.Text),
-                    MaxDistance = double.Parse(maxDidstanceTextBox.Text),
+                    MaxDistance = double.Parse(maxDidstanceTextBox.Text.Replace(".", ",")),
                     ShowDistance = showDistance.Checked ? 1 : 0,
                     ContainerName = contClassname.Text,
                     DigInStash = digIn.Checked ? 1 : 0,

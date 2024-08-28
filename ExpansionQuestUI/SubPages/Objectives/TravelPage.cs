@@ -22,6 +22,26 @@ namespace ExpansionQuestUI.SubPages.Objectives
             onEnter.Checked = true;
         }
 
+        public TravelPage(Travel travel, string filename)
+        {
+            InitializeComponent();
+            ControlBox = false;
+            MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            idTextBox.Text = travel.ID.ToString();
+            textTextBox.Text = travel.ObjectiveText;
+            timeLimitTextBox.Text = travel.TimeLimit.ToString();
+            coordsTextBox.Text = string.Join(", ", travel.Position);
+            radiusTextBox.Text = travel.MaxDistance.ToString();
+            markerNameTextBox.Text = travel.MarkerName;
+            showDistance.Checked = travel.ShowDistance != 0;
+            onEnter.Checked = travel.TriggerOnEnter != 0;
+            onExit.Checked = travel.TriggerOnExit != 0;
+            filenameTextBox.Text = filename;
+        }
+
         private void cancel_Click(object sender, EventArgs e)
         {
             if (MainPage != null)

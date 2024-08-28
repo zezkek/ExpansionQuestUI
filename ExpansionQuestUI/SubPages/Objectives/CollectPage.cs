@@ -21,6 +21,26 @@ namespace ExpansionQuestUI.SubPages.Objectives
             timeLimitTextBox.Text = "-1";
         }
 
+        public CollectPage(Collect collect, string filename)
+        {
+            InitializeComponent();
+            ControlBox = false;
+            MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            idTextBox.Text = collect.ID.ToString();
+            textTextBox.Text = collect.ObjectiveText;
+            timeLimitTextBox.Text = collect.TimeLimit.ToString();
+            showDistance.Checked = collect.ShowDistance != 0;
+            addZone.Checked = collect.AddItemsToNearbyMarketZone != 0;
+            needAny.Checked = collect.NeedAnyCollection != 0;
+            filenameTextbox.Text = filename;
+
+            foreach (var item in collect.Collections)
+                itemsData.Rows.Add(item.Amount.ToString(), item.ClassName, item.QuantityPercent.ToString(), item.MinQuantityPercent.ToString());
+        }
+
         public void AddItem(CollectItem item)
         {
             itemsData.Rows.Add(item.Amount.ToString(), item.ClassName, item.QuantityPercent.ToString(), item.MinQuantityPercent.ToString());

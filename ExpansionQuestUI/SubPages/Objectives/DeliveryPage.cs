@@ -22,6 +22,27 @@ namespace ExpansionQuestUI.SubPages.Objectives
             maxDidstanceTextBox.Text = "20,0";
         }
 
+        public DeliveryPage(Delivery delivery, string filename)
+        {
+            InitializeComponent();
+            ControlBox = false;
+            MainPage = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            idTextBox.Text = delivery.ID.ToString();
+            textTextBox.Text = delivery.ObjectiveText;
+            timeLimitTextBox.Text = delivery.TimeLimit.ToString();
+            markerNameTextBox.Text = delivery.MarkerName;
+            maxDidstanceTextBox.Text = delivery.MaxDistance.ToString();
+            showDistance.Checked = delivery.ShowDistance != 0;
+            addZone.Checked = delivery.AddItemsToNearbyMarketZone != 0;
+            filenameTextbox.Text = filename;
+            
+            foreach(var item in delivery.Collections)
+                itemsData.Rows.Add(item.Amount.ToString(), item.ClassName, item.QuantityPercent.ToString(), item.MinQuantityPercent.ToString());
+        }
+
         public void AddItem(CollectItem item)
         {
             itemsData.Rows.Add(item.Amount.ToString(), item.ClassName, item.QuantityPercent.ToString(), item.MinQuantityPercent.ToString());

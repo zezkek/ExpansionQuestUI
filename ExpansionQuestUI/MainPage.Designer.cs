@@ -85,6 +85,13 @@
             fileTooltipMenu = new ToolStripMenuItem();
             createFile = new ToolStripMenuItem();
             openFile = new ToolStripMenuItem();
+            openQuestToolStripMenuItem = new ToolStripMenuItem();
+            openObjToolStripMenuItem = new ToolStripMenuItem();
+            targetУстранениеToolStripMenuItem = new ToolStripMenuItem();
+            travelДобратьсяДоТочкиToolStripMenuItem = new ToolStripMenuItem();
+            collectСборToolStripMenuItem = new ToolStripMenuItem();
+            deliveryДоставкаToolStripMenuItem = new ToolStripMenuItem();
+            treasurehuntТайникиToolStripMenuItem = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
             validation = new ToolStripMenuItem();
             createDir = new ToolStripMenuItem();
@@ -102,7 +109,7 @@
             objectivesData = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             ObjectiveType = new DataGridViewTextBoxColumn();
-            openQuest = new OpenFileDialog();
+            openFileDialog = new OpenFileDialog();
             randomRewardAmountTextBox = new MaskedTextBox();
             randomRewardAmountLabel = new Label();
             menuStrip1.SuspendLayout();
@@ -599,21 +606,70 @@
             // createFile
             // 
             createFile.Name = "createFile";
-            createFile.Size = new Size(133, 22);
+            createFile.Size = new Size(180, 22);
             createFile.Text = "Создать";
             createFile.Click += createFile_Click;
             // 
             // openFile
             // 
+            openFile.DropDownItems.AddRange(new ToolStripItem[] { openQuestToolStripMenuItem, openObjToolStripMenuItem });
             openFile.Name = "openFile";
-            openFile.Size = new Size(133, 22);
+            openFile.Size = new Size(180, 22);
             openFile.Text = "Открыть";
-            openFile.Click += openFile_Click;
+            // 
+            // openQuestToolStripMenuItem
+            // 
+            openQuestToolStripMenuItem.Name = "openQuestToolStripMenuItem";
+            openQuestToolStripMenuItem.Size = new Size(180, 22);
+            openQuestToolStripMenuItem.Text = "Квест";
+            openQuestToolStripMenuItem.Click += openQuestToolStripMenuItem_Click;
+            // 
+            // openObjToolStripMenuItem
+            // 
+            openObjToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { targetУстранениеToolStripMenuItem, travelДобратьсяДоТочкиToolStripMenuItem, collectСборToolStripMenuItem, deliveryДоставкаToolStripMenuItem, treasurehuntТайникиToolStripMenuItem });
+            openObjToolStripMenuItem.Name = "openObjToolStripMenuItem";
+            openObjToolStripMenuItem.Size = new Size(180, 22);
+            openObjToolStripMenuItem.Text = "Задачу";
+            // 
+            // targetУстранениеToolStripMenuItem
+            // 
+            targetУстранениеToolStripMenuItem.Name = "targetУстранениеToolStripMenuItem";
+            targetУстранениеToolStripMenuItem.Size = new Size(218, 22);
+            targetУстранениеToolStripMenuItem.Text = "Target/Устранение";
+            targetУстранениеToolStripMenuItem.Click += targetУстранениеToolStripMenuItem_Click;
+            // 
+            // travelДобратьсяДоТочкиToolStripMenuItem
+            // 
+            travelДобратьсяДоТочкиToolStripMenuItem.Name = "travelДобратьсяДоТочкиToolStripMenuItem";
+            travelДобратьсяДоТочкиToolStripMenuItem.Size = new Size(218, 22);
+            travelДобратьсяДоТочкиToolStripMenuItem.Text = "Travel/Добраться до точки";
+            travelДобратьсяДоТочкиToolStripMenuItem.Click += travelДобратьсяДоТочкиToolStripMenuItem_Click;
+            // 
+            // collectСборToolStripMenuItem
+            // 
+            collectСборToolStripMenuItem.Name = "collectСборToolStripMenuItem";
+            collectСборToolStripMenuItem.Size = new Size(218, 22);
+            collectСборToolStripMenuItem.Text = "Collect/Сбор";
+            collectСборToolStripMenuItem.Click += collectСборToolStripMenuItem_Click;
+            // 
+            // deliveryДоставкаToolStripMenuItem
+            // 
+            deliveryДоставкаToolStripMenuItem.Name = "deliveryДоставкаToolStripMenuItem";
+            deliveryДоставкаToolStripMenuItem.Size = new Size(218, 22);
+            deliveryДоставкаToolStripMenuItem.Text = "Delivery/Доставка";
+            deliveryДоставкаToolStripMenuItem.Click += deliveryДоставкаToolStripMenuItem_Click;
+            // 
+            // treasurehuntТайникиToolStripMenuItem
+            // 
+            treasurehuntТайникиToolStripMenuItem.Name = "treasurehuntТайникиToolStripMenuItem";
+            treasurehuntТайникиToolStripMenuItem.Size = new Size(218, 22);
+            treasurehuntТайникиToolStripMenuItem.Text = "Treasurehunt/Тайники";
+            treasurehuntТайникиToolStripMenuItem.Click += treasurehuntТайникиToolStripMenuItem_Click;
             // 
             // saveFile
             // 
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(133, 22);
+            saveFile.Size = new Size(180, 22);
             saveFile.Text = "Сохранить";
             saveFile.Click += saveFile_Click;
             // 
@@ -907,9 +963,16 @@
         private DataGridView objectivesData;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn ObjectiveType;
-        private OpenFileDialog openQuest;
+        private OpenFileDialog openFileDialog;
         private ToolStripMenuItem saveFile;
         private MaskedTextBox randomRewardAmountTextBox;
         private Label randomRewardAmountLabel;
+        private ToolStripMenuItem openQuestToolStripMenuItem;
+        private ToolStripMenuItem openObjToolStripMenuItem;
+        private ToolStripMenuItem targetУстранениеToolStripMenuItem;
+        private ToolStripMenuItem travelДобратьсяДоТочкиToolStripMenuItem;
+        private ToolStripMenuItem collectСборToolStripMenuItem;
+        private ToolStripMenuItem deliveryДоставкаToolStripMenuItem;
+        private ToolStripMenuItem treasurehuntТайникиToolStripMenuItem;
     }
 }
